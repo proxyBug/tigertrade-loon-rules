@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain_suffix": [
+        "atigrpulse.com",
+        "atigrzen.com",
+        "itiger.com",
+        "itigergrowth.com",
+        "itigergrowtha.com",
+        "itigerup.com",
+        "laohu8.com",
+        "skytigris.cn",
+        "skytigris.com",
+        "tigerbbs.cn",
+        "tigerbbs.com",
+        "tigerbrokers.com",
+        "tigerbrokers.com.au",
+        "tigerbrokers.com.hk",
+        "tigerbrokers.com.sg",
+        "tigerbrokers.nz",
+        "tigerfintech.com",
+        "tigersecurities.com",
+        "tigrdw.com",
+        "tigrwd.com",
+        "tradeup.com",
+        "ttm.financial",
+        "xiaohu8.com",
+        "zhijianfengyi.cn",
+        "zhijianfengyi.com"
+      ],
+      "domain_keyword": [
+        "tigerbrokers"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+# NAME: TigerTrade
+# DESC: 老虎证券 / 老虎国际 (Tiger Trade) 代理分流规则合集
+# AUTHOR: proxyBug
+# REPO: https://github.com/proxyBug/tigertrade-loon-rules
+# TARGET: Clash(mihomo) rule-provider, behavior: classical
+# UPDATED: 2026-06-11
+# DOMAIN-SUFFIX: 25
+# DOMAIN-KEYWORD: 1
+# TOTAL: 26
+
+payload:
+  - DOMAIN-SUFFIX,atigrpulse.com
+  - DOMAIN-SUFFIX,atigrzen.com
+  - DOMAIN-SUFFIX,itiger.com
+  - DOMAIN-SUFFIX,itigergrowth.com
+  - DOMAIN-SUFFIX,itigergrowtha.com
+  - DOMAIN-SUFFIX,itigerup.com
+  - DOMAIN-SUFFIX,laohu8.com
+  - DOMAIN-SUFFIX,skytigris.cn
+  - DOMAIN-SUFFIX,skytigris.com
+  - DOMAIN-SUFFIX,tigerbbs.cn
+  - DOMAIN-SUFFIX,tigerbbs.com
+  - DOMAIN-SUFFIX,tigerbrokers.com
+  - DOMAIN-SUFFIX,tigerbrokers.com.au
+  - DOMAIN-SUFFIX,tigerbrokers.com.hk
+  - DOMAIN-SUFFIX,tigerbrokers.com.sg
+  - DOMAIN-SUFFIX,tigerbrokers.nz
+  - DOMAIN-SUFFIX,tigerfintech.com
+  - DOMAIN-SUFFIX,tigersecurities.com
+  - DOMAIN-SUFFIX,tigrdw.com
+  - DOMAIN-SUFFIX,tigrwd.com
+  - DOMAIN-SUFFIX,tradeup.com
+  - DOMAIN-SUFFIX,ttm.financial
+  - DOMAIN-SUFFIX,xiaohu8.com
+  - DOMAIN-SUFFIX,zhijianfengyi.cn
+  - DOMAIN-SUFFIX,zhijianfengyi.com
+  - DOMAIN-KEYWORD,tigerbrokers
