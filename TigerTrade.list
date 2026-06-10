@@ -4,14 +4,29 @@
 # REPO: https://github.com/proxyBug/tigertrade-loon-rules
 # UPDATED: 2026-06-11
 # 适用于 Loon 远程规则 (Remote Rule) 订阅,策略组在订阅时自行指定
-# DOMAIN-SUFFIX: 16
+# DOMAIN-SUFFIX: 25
 # DOMAIN-KEYWORD: 1
-# TOTAL: 17
+# TOTAL: 26
 
 # > 核心域名: App 行情 / 交易 / 开放平台 API
 DOMAIN-SUFFIX,itiger.com
 DOMAIN-SUFFIX,itigerup.com
 DOMAIN-SUFFIX,tigerfintech.com
+
+# > 加速 / 备用 CDN 域名 (App 内实际请求,多为混淆命名)
+# skytigris.cn 注册邮箱为 @itiger.com; tigrwd/tigrdw 站点标题为 Tiger Fintech;
+# atigrzen 站点标识为 Tiger Brokers; itigergrowth(a) 收录于 v2fly 官方 itiger 列表
+DOMAIN-SUFFIX,atigrpulse.com
+DOMAIN-SUFFIX,atigrzen.com
+DOMAIN-SUFFIX,itigergrowth.com
+DOMAIN-SUFFIX,itigergrowtha.com
+DOMAIN-SUFFIX,skytigris.cn
+DOMAIN-SUFFIX,skytigris.com
+DOMAIN-SUFFIX,tigrdw.com
+DOMAIN-SUFFIX,tigrwd.com
+
+# > 海外社区 / TigerGPT (TTM, Tiger Group 旗下)
+DOMAIN-SUFFIX,ttm.financial
 
 # > 各地区官网
 DOMAIN-SUFFIX,tigerbrokers.com

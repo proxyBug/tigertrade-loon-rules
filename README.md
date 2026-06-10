@@ -32,15 +32,18 @@ https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/TigerTrade
 
 | 类型 | 数量 | 说明 |
 | --- | --- | --- |
-| DOMAIN-SUFFIX | 16 | 核心 API、各地区官网、社区等域名 |
+| DOMAIN-SUFFIX | 25 | 核心 API、CDN、各地区官网、社区等域名 |
 | DOMAIN-KEYWORD | 1 | `tigerbrokers` 关键字兜底,覆盖未来新增地区站点 |
 
 涵盖的主要域名:
 
 - **核心 App / API**:`itiger.com`、`itigerup.com`、`tigerfintech.com`
+- **加速 / 备用 CDN**(App 内实际请求,多为混淆命名):`skytigris.cn`、`skytigris.com`、`itigergrowth.com`、`itigergrowtha.com`、`atigrzen.com`、`atigrpulse.com`、`tigrwd.com`、`tigrdw.com`
 - **各地区官网**:`tigerbrokers.com`(及 `.com.sg` / `.com.au` / `.com.hk` / `.nz`)
 - **美国子公司 / 关联品牌**:`tigersecurities.com`、`tradeup.com`
-- **老虎社区**:`laohu8.com`、`tigerbbs.com`、`tigerbbs.cn`、`xiaohu8.com`
+- **老虎社区 / TTM**:`laohu8.com`、`tigerbbs.com`、`tigerbbs.cn`、`xiaohu8.com`、`ttm.financial`(TigerGPT)
+
+CDN 类域名的归属均经核验:`skytigris.cn` whois 注册邮箱为 `@itiger.com`;`tigrwd.com` / `tigrdw.com` 站点标题为 *Tiger Fintech*;`atigrzen.com` 站点标识为 *Tiger Brokers*;`hktrade.skytigris.com` 为老虎港股交易接口;`itigergrowth(a).com` 收录于 [v2fly 官方 itiger 列表](https://github.com/v2fly/domain-list-community/blob/master/data/itiger)。
 
 ## 说明
 
