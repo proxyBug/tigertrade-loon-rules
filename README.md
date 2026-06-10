@@ -1,8 +1,24 @@
 # TigerTrade 代理分流规则
 
-老虎证券 / 老虎国际(Tiger Trade)代理分流规则合集,覆盖 App 行情交易接口、加速 CDN、开放平台 API、各地区官网及老虎社区等 26 条域名规则。
+**GitHub 上最齐全的老虎证券(Tiger Trade)代理分流规则集** —— 26 条规则,是 [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script)(8 条)与 [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)(4 条)的**完整超集**,并独家收录了老虎 App 实际使用、社区规则普遍缺失的混淆加速 CDN 域名(`skytigris.*` / `atigr*` / `tigr*` 系列)。漏掉这些 CDN,正是「明明配了规则、行情还是走错线路」的常见原因。
 
-支持 **Loon · Surge · Shadowrocket · Clash(mihomo) · Quantumult X · sing-box** 六种客户端,所有格式由同一份源文件生成,内容完全一致。
+覆盖范围:App 行情/交易接口、加速 CDN、开放平台 API、各地区官网、美国子公司及老虎社区。支持 **Loon · Surge · Shadowrocket · Clash(mihomo) · Quantumult X · sing-box** 六种客户端,所有格式由同一份源文件生成,内容完全一致。
+
+## 📊 与主流社区规则对比
+
+| 覆盖范围 | 本仓库 | blackmatrix7<br>(TigerFintech) | v2fly<br>(itiger) |
+| --- | :---: | :---: | :---: |
+| 规则总数 | **26** | 8 | 4 |
+| App 核心 API(itiger.com / tigerfintech.com) | ✅ | ✅ | ⚠️ 缺 tigerfintech |
+| 美区 App API(itigerup.com) | ✅ | ❌ | ✅ |
+| 混淆加速 CDN(skytigris / atigr\* / tigr\* 等 8 域名) | ✅ | ❌ | ⚠️ 仅 itigergrowth 2 个 |
+| 各地区官网(sg / au / hk / nz) | ✅ | ❌ | ❌ |
+| 美国子公司(TradeUP / Tiger Securities) | ✅ | ❌ | ❌ |
+| 老虎社区(laohu8 / tigerbbs / 小虎) | ✅ | ✅ | ❌ |
+| TigerGPT(ttm.financial) | ✅ | ❌ | ❌ |
+| 关键字兜底(自动覆盖新增地区站) | ✅ | ❌ | ❌ |
+
+> 对比数据取自两仓库 2026-06 线上版本,本仓库完整包含两者全部域名。
 
 ## 📦 订阅地址总览
 
@@ -129,6 +145,6 @@ python3 scripts/generate.py
 
 ## 说明
 
-- 域名整理自老虎证券公开官网、[v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)、[blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script) 等社区规则,并经过逐一核验;
+- 域名通过 whois / TLS 证书 / 站点标识逐一核验,部分基础域名与 [v2fly](https://github.com/v2fly/domain-list-community)、[blackmatrix7](https://github.com/blackmatrix7/ios_rule_script) 社区规则交叉验证(在此致谢);
 - 如发现域名缺失或失效,欢迎提 Issue / PR;
 - 本项目仅作网络分流用途,与老虎证券官方无关。
