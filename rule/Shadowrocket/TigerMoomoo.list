@@ -1,20 +1,27 @@
-# NAME: TigerTrade
-# DESC: 老虎证券 / 老虎国际 (Tiger Trade) 代理分流规则合集
+# NAME: TigerMoomoo
+# DESC: 老虎证券 (Tiger Trade) + 富途证券 (Moomoo) 代理分流规则合集
 # AUTHOR: proxyBug
 # REPO: https://github.com/proxyBug/tigertrade-loon-rules
-# TARGET: Surge
+# TARGET: Shadowrocket
 # UPDATED: 2026-06-23
-# DOMAIN-SUFFIX: 25
-# DOMAIN-KEYWORD: 1
-# TOTAL: 26
+# DOMAIN-SUFFIX: 32
+# DOMAIN-KEYWORD: 3
+# TOTAL: 35
 
 DOMAIN-SUFFIX,atigrpulse.com
 DOMAIN-SUFFIX,atigrzen.com
+DOMAIN-SUFFIX,futu.inc
+DOMAIN-SUFFIX,futu5.com
+DOMAIN-SUFFIX,futuhk.com
+DOMAIN-SUFFIX,futunn.com
+DOMAIN-SUFFIX,futusg.com
 DOMAIN-SUFFIX,itiger.com
 DOMAIN-SUFFIX,itigergrowth.com
 DOMAIN-SUFFIX,itigergrowtha.com
 DOMAIN-SUFFIX,itigerup.com
 DOMAIN-SUFFIX,laohu8.com
+DOMAIN-SUFFIX,moomoo.com
+DOMAIN-SUFFIX,nniuvip.com
 DOMAIN-SUFFIX,skytigris.cn
 DOMAIN-SUFFIX,skytigris.com
 DOMAIN-SUFFIX,tigerbbs.cn
@@ -33,4 +40,6 @@ DOMAIN-SUFFIX,ttm.financial
 DOMAIN-SUFFIX,xiaohu8.com
 DOMAIN-SUFFIX,zhijianfengyi.cn
 DOMAIN-SUFFIX,zhijianfengyi.com
+DOMAIN-KEYWORD,futunn
+DOMAIN-KEYWORD,moomoo
 DOMAIN-KEYWORD,tigerbrokers

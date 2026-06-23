@@ -1,0 +1,46 @@
+# NAME: TigerMoomoo
+# DESC: 老虎证券 (Tiger Trade) + 富途证券 (Moomoo) 代理分流规则合集
+# AUTHOR: proxyBug
+# REPO: https://github.com/proxyBug/tigertrade-loon-rules
+# TARGET: Quantumult X
+# UPDATED: 2026-06-23
+# DOMAIN-SUFFIX: 32
+# DOMAIN-KEYWORD: 3
+# TOTAL: 35
+# 订阅时建议使用 force-policy=你的策略 覆盖默认策略名
+
+HOST-SUFFIX,atigrpulse.com,TigerMoomoo
+HOST-SUFFIX,atigrzen.com,TigerMoomoo
+HOST-SUFFIX,futu.inc,TigerMoomoo
+HOST-SUFFIX,futu5.com,TigerMoomoo
+HOST-SUFFIX,futuhk.com,TigerMoomoo
+HOST-SUFFIX,futunn.com,TigerMoomoo
+HOST-SUFFIX,futusg.com,TigerMoomoo
+HOST-SUFFIX,itiger.com,TigerMoomoo
+HOST-SUFFIX,itigergrowth.com,TigerMoomoo
+HOST-SUFFIX,itigergrowtha.com,TigerMoomoo
+HOST-SUFFIX,itigerup.com,TigerMoomoo
+HOST-SUFFIX,laohu8.com,TigerMoomoo
+HOST-SUFFIX,moomoo.com,TigerMoomoo
+HOST-SUFFIX,nniuvip.com,TigerMoomoo
+HOST-SUFFIX,skytigris.cn,TigerMoomoo
+HOST-SUFFIX,skytigris.com,TigerMoomoo
+HOST-SUFFIX,tigerbbs.cn,TigerMoomoo
+HOST-SUFFIX,tigerbbs.com,TigerMoomoo
+HOST-SUFFIX,tigerbrokers.com,TigerMoomoo
+HOST-SUFFIX,tigerbrokers.com.au,TigerMoomoo
+HOST-SUFFIX,tigerbrokers.com.hk,TigerMoomoo
+HOST-SUFFIX,tigerbrokers.com.sg,TigerMoomoo
+HOST-SUFFIX,tigerbrokers.nz,TigerMoomoo
+HOST-SUFFIX,tigerfintech.com,TigerMoomoo
+HOST-SUFFIX,tigersecurities.com,TigerMoomoo
+HOST-SUFFIX,tigrdw.com,TigerMoomoo
+HOST-SUFFIX,tigrwd.com,TigerMoomoo
+HOST-SUFFIX,tradeup.com,TigerMoomoo
+HOST-SUFFIX,ttm.financial,TigerMoomoo
+HOST-SUFFIX,xiaohu8.com,TigerMoomoo
+HOST-SUFFIX,zhijianfengyi.cn,TigerMoomoo
+HOST-SUFFIX,zhijianfengyi.com,TigerMoomoo
+HOST-KEYWORD,futunn,TigerMoomoo
+HOST-KEYWORD,moomoo,TigerMoomoo
+HOST-KEYWORD,tigerbrokers,TigerMoomoo

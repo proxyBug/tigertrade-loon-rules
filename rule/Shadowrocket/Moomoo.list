@@ -1,0 +1,19 @@
+# NAME: Moomoo
+# DESC: 富途证券 / Moomoo 代理分流规则合集
+# AUTHOR: proxyBug
+# REPO: https://github.com/proxyBug/tigertrade-loon-rules
+# TARGET: Shadowrocket
+# UPDATED: 2026-06-23
+# DOMAIN-SUFFIX: 7
+# DOMAIN-KEYWORD: 2
+# TOTAL: 9
+
+DOMAIN-SUFFIX,futu.inc
+DOMAIN-SUFFIX,futu5.com
+DOMAIN-SUFFIX,futuhk.com
+DOMAIN-SUFFIX,futunn.com
+DOMAIN-SUFFIX,futusg.com
+DOMAIN-SUFFIX,moomoo.com
+DOMAIN-SUFFIX,nniuvip.com
+DOMAIN-KEYWORD,futunn
+DOMAIN-KEYWORD,moomoo

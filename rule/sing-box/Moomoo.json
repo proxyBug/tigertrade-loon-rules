@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "rules": [
+    {
+      "domain_suffix": [
+        "futu.inc",
+        "futu5.com",
+        "futuhk.com",
+        "futunn.com",
+        "futusg.com",
+        "moomoo.com",
+        "nniuvip.com"
+      ],
+      "domain_keyword": [
+        "futunn",
+        "moomoo"
+      ]
+    }
+  ]
+}

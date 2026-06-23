@@ -1,0 +1,30 @@
+# NAME: Moomoo
+# DESC: 富途证券 / Moomoo (Futu NiuNiu) 代理分流规则合集
+# AUTHOR: proxyBug
+# REPO: https://github.com/proxyBug/tigertrade-loon-rules
+# UPDATED: 2026-06-23
+# 适用于 Loon 远程规则 (Remote Rule) 订阅,策略组在订阅时自行指定
+# DOMAIN-SUFFIX: 7
+# DOMAIN-KEYWORD: 2
+# TOTAL: 9
+
+# > 核心域名: moomoo 平台 / 富途牛牛 API
+DOMAIN-SUFFIX,moomoo.com
+DOMAIN-SUFFIX,futunn.com
+
+# > 企业官网
+DOMAIN-SUFFIX,futu.inc
+
+# > 各地区官网
+DOMAIN-SUFFIX,futuhk.com
+DOMAIN-SUFFIX,futusg.com
+
+# > 加速 / 数据 API 域名 (App 内实际请求)
+# futu5.com 为富途市场行情数据及交易接口域名; nniuvip.com 为牛牛 VIP 服务域名
+DOMAIN-SUFFIX,futu5.com
+DOMAIN-SUFFIX,nniuvip.com
+
+# > 兜底: 覆盖 moomoo 各地区站 (包括 .com.au / .ca / .my / .jp 等地区域名)
+# 以及 futunn.* 系列子域名变体
+DOMAIN-KEYWORD,moomoo
+DOMAIN-KEYWORD,futunn

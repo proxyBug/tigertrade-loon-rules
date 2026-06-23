@@ -1,0 +1,20 @@
+# NAME: Moomoo
+# DESC: 富途证券 / Moomoo 代理分流规则合集
+# AUTHOR: proxyBug
+# REPO: https://github.com/proxyBug/tigertrade-loon-rules
+# TARGET: Quantumult X
+# UPDATED: 2026-06-23
+# DOMAIN-SUFFIX: 7
+# DOMAIN-KEYWORD: 2
+# TOTAL: 9
+# 订阅时建议使用 force-policy=你的策略 覆盖默认策略名
+
+HOST-SUFFIX,futu.inc,Moomoo
+HOST-SUFFIX,futu5.com,Moomoo
+HOST-SUFFIX,futuhk.com,Moomoo
+HOST-SUFFIX,futunn.com,Moomoo
+HOST-SUFFIX,futusg.com,Moomoo
+HOST-SUFFIX,moomoo.com,Moomoo
+HOST-SUFFIX,nniuvip.com,Moomoo
+HOST-KEYWORD,futunn,Moomoo
+HOST-KEYWORD,moomoo,Moomoo
