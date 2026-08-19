@@ -4,37 +4,44 @@
 # REPO: https://github.com/proxyBug/tigertrade-loon-rules
 # TARGET: Surge
 # UPDATED: 2026-08-20
-# DOMAIN-SUFFIX: 33
+# DOMAIN-SUFFIX: 40
 # DOMAIN-KEYWORD: 0
-# TOTAL: 33
+# TOTAL: 40
 
 DOMAIN-SUFFIX,atigrpulse.com
 DOMAIN-SUFFIX,atigrzen.com
+DOMAIN-SUFFIX,etasphere.com
 DOMAIN-SUFFIX,ftfast.com
+DOMAIN-SUFFIX,gotigerhk.com
 DOMAIN-SUFFIX,iotaskyt.com
 DOMAIN-SUFFIX,iotaskyty.com
+DOMAIN-SUFFIX,itiger-nz.com
 DOMAIN-SUFFIX,itiger.com
 DOMAIN-SUFFIX,itigergrowth.com
 DOMAIN-SUFFIX,itigergrowtha.com
+DOMAIN-SUFFIX,itigertrader.com
 DOMAIN-SUFFIX,itigerup.com
 DOMAIN-SUFFIX,laohu8.com
 DOMAIN-SUFFIX,play-analytics.com
 DOMAIN-SUFFIX,skytigris.cn
 DOMAIN-SUFFIX,skytigris.com
-DOMAIN-SUFFIX,tbdesk.com
+DOMAIN-SUFFIX,thetigerbrokers.com
 DOMAIN-SUFFIX,tigerbbs.cn
 DOMAIN-SUFFIX,tigerbbs.com
 DOMAIN-SUFFIX,tigerbrokers.com
 DOMAIN-SUFFIX,tigerbrokers.com.au
 DOMAIN-SUFFIX,tigerbrokers.com.hk
 DOMAIN-SUFFIX,tigerbrokers.com.sg
-DOMAIN-SUFFIX,tigerbrokers.net
 DOMAIN-SUFFIX,tigerbrokers.nz
+DOMAIN-SUFFIX,tigeresop.com
+DOMAIN-SUFFIX,tigeresop.com.sg
 DOMAIN-SUFFIX,tigerfintech.com
+DOMAIN-SUFFIX,tigerhkgo.com
 DOMAIN-SUFFIX,tigersecurities.com
-DOMAIN-SUFFIX,tigertcp.cn
+DOMAIN-SUFFIX,tigertrader.app
 DOMAIN-SUFFIX,tigr.link
 DOMAIN-SUFFIX,tigrdw.com
+DOMAIN-SUFFIX,tigrgood.com
 DOMAIN-SUFFIX,tigrwd.com
 DOMAIN-SUFFIX,tradeup.com
 DOMAIN-SUFFIX,ttm.financial

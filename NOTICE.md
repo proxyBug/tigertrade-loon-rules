@@ -24,6 +24,9 @@ The blackmatrix7 dataset was used as a discovery and comparison source. Candidat
 
 ## Official sources
 
+- Tiger Trade runtime/bootstrap configuration: https://up.play-analytics.com/
+- Pinned Tiger runtime evidence matrix: `evidence/tiger-runtime-2026-08-20.json`
+- Pinned community comparison matrix: `evidence/community-comparison-2026-08-20.json`
 - Moomoo OpenAPI documentation: https://openapi.moomoo.com/moomoo-api-doc/en/
 - Futu OpenAPI documentation: https://openapi.futunn.com/futu-api-doc/en/
 - Futu Trustee corporate confirmation: https://www.futuhk.com/en/about-us/newsroom/futu-trustee-launches-groundbreaking-futu-pension-family-trust

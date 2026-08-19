@@ -4,13 +4,14 @@
 # REPO: https://github.com/proxyBug/tigertrade-loon-rules
 # TARGET: Quantumult X
 # UPDATED: 2026-08-20
-# DOMAIN-SUFFIX: 57
+# DOMAIN-SUFFIX: 64
 # DOMAIN-KEYWORD: 0
-# TOTAL: 57
+# TOTAL: 64
 # 订阅时建议使用 force-policy=你的策略 覆盖默认策略名
 
 HOST-SUFFIX,atigrpulse.com,TigerMoomoo
 HOST-SUFFIX,atigrzen.com,TigerMoomoo
+HOST-SUFFIX,etasphere.com,TigerMoomoo
 HOST-SUFFIX,ftfast.com,TigerMoomoo
 HOST-SUFFIX,futu.cn,TigerMoomoo
 HOST-SUFFIX,futu.link,TigerMoomoo
@@ -31,11 +32,14 @@ HOST-SUFFIX,futusg.com,TigerMoomoo
 HOST-SUFFIX,futustatic.com,TigerMoomoo
 HOST-SUFFIX,fututrade.com,TigerMoomoo
 HOST-SUFFIX,fututrustee.com,TigerMoomoo
+HOST-SUFFIX,gotigerhk.com,TigerMoomoo
 HOST-SUFFIX,iotaskyt.com,TigerMoomoo
 HOST-SUFFIX,iotaskyty.com,TigerMoomoo
+HOST-SUFFIX,itiger-nz.com,TigerMoomoo
 HOST-SUFFIX,itiger.com,TigerMoomoo
 HOST-SUFFIX,itigergrowth.com,TigerMoomoo
 HOST-SUFFIX,itigergrowtha.com,TigerMoomoo
+HOST-SUFFIX,itigertrader.com,TigerMoomoo
 HOST-SUFFIX,itigerup.com,TigerMoomoo
 HOST-SUFFIX,laohu8.com,TigerMoomoo
 HOST-SUFFIX,moomoo.ca,TigerMoomoo
@@ -46,20 +50,23 @@ HOST-SUFFIX,moomootrustee.com,TigerMoomoo
 HOST-SUFFIX,play-analytics.com,TigerMoomoo
 HOST-SUFFIX,skytigris.cn,TigerMoomoo
 HOST-SUFFIX,skytigris.com,TigerMoomoo
-HOST-SUFFIX,tbdesk.com,TigerMoomoo
+HOST-SUFFIX,thetigerbrokers.com,TigerMoomoo
 HOST-SUFFIX,tigerbbs.cn,TigerMoomoo
 HOST-SUFFIX,tigerbbs.com,TigerMoomoo
 HOST-SUFFIX,tigerbrokers.com,TigerMoomoo
 HOST-SUFFIX,tigerbrokers.com.au,TigerMoomoo
 HOST-SUFFIX,tigerbrokers.com.hk,TigerMoomoo
 HOST-SUFFIX,tigerbrokers.com.sg,TigerMoomoo
-HOST-SUFFIX,tigerbrokers.net,TigerMoomoo
 HOST-SUFFIX,tigerbrokers.nz,TigerMoomoo
+HOST-SUFFIX,tigeresop.com,TigerMoomoo
+HOST-SUFFIX,tigeresop.com.sg,TigerMoomoo
 HOST-SUFFIX,tigerfintech.com,TigerMoomoo
+HOST-SUFFIX,tigerhkgo.com,TigerMoomoo
 HOST-SUFFIX,tigersecurities.com,TigerMoomoo
-HOST-SUFFIX,tigertcp.cn,TigerMoomoo
+HOST-SUFFIX,tigertrader.app,TigerMoomoo
 HOST-SUFFIX,tigr.link,TigerMoomoo
 HOST-SUFFIX,tigrdw.com,TigerMoomoo
+HOST-SUFFIX,tigrgood.com,TigerMoomoo
 HOST-SUFFIX,tigrwd.com,TigerMoomoo
 HOST-SUFFIX,tradeup.com,TigerMoomoo
 HOST-SUFFIX,ttm.financial,TigerMoomoo

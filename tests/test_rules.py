@@ -15,15 +15,24 @@ DOMAIN_RE = re.compile(
 )
 
 TIGER_REQUIRED = {
+    "etasphere.com",
     "ftfast.com",
+    "gotigerhk.com",
     "iotaskyt.com",
     "iotaskyty.com",
+    "itiger-nz.com",
+    "itigertrader.com",
     "play-analytics.com",
-    "tbdesk.com",
-    "tigerbrokers.net",
-    "tigertcp.cn",
+    "thetigerbrokers.com",
+    "tigeresop.com",
+    "tigeresop.com.sg",
+    "tigerhkgo.com",
+    "tigertrader.app",
     "tigr.link",
+    "tigrgood.com",
 }
+
+HELD_TIGER_DOMAINS = {"tbdesk.com", "tigerbrokers.net", "tigertcp.cn"}
 
 MOOMOO_REQUIRED = {
     "futu.cn",
@@ -149,8 +158,46 @@ class RuleRepositoryTests(unittest.TestCase):
 
     def test_high_confidence_domain_coverage(self) -> None:
         self.assertTrue(TIGER_REQUIRED <= self.tiger_suffixes)
+        self.assertFalse(HELD_TIGER_DOMAINS & self.tiger_suffixes)
         self.assertTrue(MOOMOO_REQUIRED <= self.moomoo_suffixes)
         self.assertFalse(REJECTED_DOMAINS & self.moomoo_suffixes)
+
+    def test_tiger_runtime_evidence_drives_inclusion_and_exclusion(self) -> None:
+        evidence_path = ROOT / "evidence/tiger-runtime-2026-08-20.json"
+        evidence = json.loads(evidence_path.read_text(encoding="utf-8"))
+        self.assertEqual(evidence["source_url"], "https://up.play-analytics.com/")
+        self.assertRegex(
+            evidence["semantic_occurrences_sha256"], r"^[0-9a-f]{64}$"
+        )
+        self.assertNotIn("source_sha256", evidence)
+
+        included = {row["root_domain"] for row in evidence["included_first_party"]}
+        held = {row["root_domain"] for row in evidence["held_or_removed"]}
+        excluded = {row["root_domain"] for row in evidence["excluded_third_party"]}
+
+        self.assertTrue(included <= self.tiger_suffixes)
+        self.assertFalse((held | excluded) & self.tiger_suffixes)
+
+        for group in ("included_first_party", "excluded_third_party"):
+            for row in evidence[group]:
+                self.assertTrue(row["field_paths"], row["root_domain"])
+                for field_path in row["field_paths"]:
+                    self.assertTrue(field_path.startswith("root.items[0]."), field_path)
+
+        def covered(hostname: str) -> bool:
+            return any(
+                hostname == suffix or hostname.endswith("." + suffix)
+                for suffix in self.tiger_suffixes
+            )
+
+        for row in evidence["included_first_party"]:
+            for hostname in row["runtime_hosts"]:
+                with self.subTest(hostname=hostname, decision="include"):
+                    self.assertTrue(covered(hostname))
+        for row in evidence["excluded_third_party"]:
+            for hostname in row["runtime_hosts"]:
+                with self.subTest(hostname=hostname, decision="exclude"):
+                    self.assertFalse(covered(hostname))
 
     def test_rules_use_explicit_suffixes_without_keyword_false_positives(self) -> None:
         self.assertEqual(self.tiger_keywords, set())
@@ -229,6 +276,32 @@ class RuleRepositoryTests(unittest.TestCase):
         for target in targets:
             with self.subTest(target=target):
                 self.assertTrue((ROOT / target).is_file(), target)
+
+    def test_readme_comparison_matches_pinned_community_evidence(self) -> None:
+        comparison = json.loads(
+            (ROOT / "evidence/community-comparison-2026-08-20.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(comparison["tiger"]["repository_count"], len(self.tiger_suffixes))
+        self.assertEqual(comparison["moomoo"]["repository_count"], len(self.moomoo_suffixes))
+
+        text = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("11 项测试", text)
+        tiger = comparison["tiger"]
+        moomoo = comparison["moomoo"]
+        self.assertIn(
+            f'| 显式后缀规则数 | **{tiger["repository_count"]}** | '
+            f'{tiger["blackmatrix"]["count"]} | {tiger["v2fly"]["count"]} |',
+            text,
+        )
+        self.assertIn(
+            f'| 显式后缀规则数 | **{moomoo["repository_count"]}** | '
+            f'{moomoo["v2fly"]["count"]} |',
+            text,
+        )
+        self.assertEqual(tiger["v2fly"]["missing_from_repository"], [])
+        self.assertEqual(moomoo["v2fly"]["missing_from_repository"], [])
 
     def test_generator_check_mode_detects_drift_without_rewriting(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
