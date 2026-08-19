@@ -265,7 +265,7 @@ class RuleRepositoryTests(unittest.TestCase):
 
     def test_readme_raw_links_resolve_to_tracked_files(self) -> None:
         text = (ROOT / "README.md").read_text(encoding="utf-8")
-        prefix = "https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/"
+        prefix = "https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/"
         targets = {
             match
             for match in re.findall(
@@ -277,6 +277,35 @@ class RuleRepositoryTests(unittest.TestCase):
             with self.subTest(target=target):
                 self.assertTrue((ROOT / target).is_file(), target)
 
+    def test_repository_identity_uses_new_name_without_old_slug(self) -> None:
+        old_slug = "tigertrade-" + "loon-rules"
+        new_slug = "tigertrade-moomoo-rules"
+        tracked = subprocess.run(
+            ["git", "ls-files"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout.splitlines()
+        inspected = 0
+        for relative in tracked:
+            path = ROOT / relative
+            try:
+                text = path.read_text(encoding="utf-8")
+            except UnicodeDecodeError:
+                continue
+            inspected += 1
+            if relative == "CHANGELOG.md":
+                self.assertEqual(text.count(old_slug), 1)
+                continue
+            with self.subTest(path=relative):
+                self.assertNotIn(old_slug, text)
+        self.assertGreater(inspected, 20)
+        self.assertIn(
+            f"https://github.com/proxyBug/{new_slug}",
+            (ROOT / "TigerTrade.list").read_text(encoding="utf-8"),
+        )
+
     def test_readme_comparison_matches_pinned_community_evidence(self) -> None:
         comparison = json.loads(
             (ROOT / "evidence/community-comparison-2026-08-20.json").read_text(
@@ -287,7 +316,7 @@ class RuleRepositoryTests(unittest.TestCase):
         self.assertEqual(comparison["moomoo"]["repository_count"], len(self.moomoo_suffixes))
 
         text = (ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertIn("11 项测试", text)
+        self.assertIn("12 项测试", text)
         tiger = comparison["tiger"]
         moomoo = comparison["moomoo"]
         self.assertIn(

@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-REPO = "https://github.com/proxyBug/tigertrade-loon-rules"
+REPO = "https://github.com/proxyBug/tigertrade-moomoo-rules"
 
 TIGER_DESC = "老虎证券 / 老虎国际 (Tiger Trade) 代理分流规则合集"
 MOOMOO_DESC = "富途证券 / Moomoo 代理分流规则合集"

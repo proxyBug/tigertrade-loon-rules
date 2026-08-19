@@ -1,7 +1,7 @@
 # NAME: TigerMoomoo
 # DESC: 老虎证券 (Tiger Trade) + 富途证券 (Moomoo) 代理分流规则合集
 # AUTHOR: proxyBug
-# REPO: https://github.com/proxyBug/tigertrade-loon-rules
+# REPO: https://github.com/proxyBug/tigertrade-moomoo-rules
 # TARGET: Shadowrocket
 # UPDATED: 2026-08-20
 # DOMAIN-SUFFIX: 64
