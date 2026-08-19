@@ -1,7 +1,7 @@
 # Tiger Trade + Moomoo/Futu 代理分流规则
 
-[![Release](https://img.shields.io/github/v/release/proxyBug/tigertrade-loon-rules?display_name=tag)](https://github.com/proxyBug/tigertrade-loon-rules/releases/latest)
-[![Validate rules](https://github.com/proxyBug/tigertrade-loon-rules/actions/workflows/validate.yml/badge.svg)](https://github.com/proxyBug/tigertrade-loon-rules/actions/workflows/validate.yml)
+[![Release](https://img.shields.io/github/v/release/proxyBug/tigertrade-moomoo-rules?display_name=tag)](https://github.com/proxyBug/tigertrade-moomoo-rules/releases/latest)
+[![Validate rules](https://github.com/proxyBug/tigertrade-moomoo-rules/actions/workflows/validate.yml/badge.svg)](https://github.com/proxyBug/tigertrade-moomoo-rules/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 > 官网能打开，行情、登录、下单或活动页却仍旧偶发卡住？问题往往出在 App 背后那批不显眼的 API、CDN、交易接口和地区门户。
@@ -11,7 +11,7 @@
 - **三套规则**：Tiger、Moomoo/Futu、Tiger + Moomoo 合并版
 - **六种客户端**：Loon、Surge、Shadowrocket、Clash/mihomo、Quantumult X、sing-box
 - **零宽泛关键字**：全部使用显式 `DOMAIN-SUFFIX`，减少误伤
-- **可复现维护**：两份源文件生成全部格式，11 项测试与 GitHub Actions 自动防漂移
+- **可复现维护**：两份源文件生成全部格式，12 项测试与 GitHub Actions 自动防漂移
 
 ## 为什么值得用
 
@@ -75,26 +75,26 @@
 | Quantumult X | [`TigerTrade.list`][qx-tiger] | [`Moomoo.list`][qx-moomoo] | [`TigerMoomoo.list`][qx-combined] |
 | sing-box | [`TigerTrade.json`][singbox-tiger] | [`Moomoo.json`][singbox-moomoo] | [`TigerMoomoo.json`][singbox-combined] |
 
-[loon-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/TigerTrade.list
-[loon-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/Moomoo.list
-[loon-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/TigerMoomoo.list
-[surge-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/TigerTrade.list
-[surge-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/Moomoo.list
-[surge-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/TigerMoomoo.list
-[shadowrocket-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/TigerTrade.list
-[shadowrocket-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/Moomoo.list
-[shadowrocket-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/TigerMoomoo.list
-[clash-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Clash/TigerTrade.yaml
-[clash-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Clash/Moomoo.yaml
-[clash-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Clash/TigerMoomoo.yaml
-[qx-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/TigerTrade.list
-[qx-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/Moomoo.list
-[qx-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/TigerMoomoo.list
-[singbox-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/TigerTrade.json
-[singbox-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/Moomoo.json
-[singbox-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/TigerMoomoo.json
+[loon-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/TigerTrade.list
+[loon-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/Moomoo.list
+[loon-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/TigerMoomoo.list
+[surge-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/Surge/TigerTrade.list
+[surge-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/Surge/Moomoo.list
+[surge-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/Surge/TigerMoomoo.list
+[shadowrocket-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/Shadowrocket/TigerTrade.list
+[shadowrocket-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/Shadowrocket/Moomoo.list
+[shadowrocket-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/Shadowrocket/TigerMoomoo.list
+[clash-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/Clash/TigerTrade.yaml
+[clash-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/Clash/Moomoo.yaml
+[clash-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/Clash/TigerMoomoo.yaml
+[qx-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/QuantumultX/TigerTrade.list
+[qx-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/QuantumultX/Moomoo.list
+[qx-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/QuantumultX/TigerMoomoo.list
+[singbox-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/sing-box/TigerTrade.json
+[singbox-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/sing-box/Moomoo.json
+[singbox-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/sing-box/TigerMoomoo.json
 
-> 上表是持续更新的 `main` 通道。需要固定版本时，把 URL 中的 `main` 换成版本号，例如 `v0.1.1`。
+> 上表是持续更新的 `main` 通道。需要固定版本时，把 URL 中的 `main` 换成版本号，例如 `v0.1.2`。
 
 ## 怎么添加
 
@@ -106,14 +106,14 @@ App 内进入：**配置 → 规则 → 远程规则 → 右上角 +**，粘贴 
 
 ```ini
 [Remote Rule]
-https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/TigerMoomoo.list, policy=PROXY, tag=TigerMoomoo, enabled=true
+https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/TigerMoomoo.list, policy=PROXY, tag=TigerMoomoo, enabled=true
 ```
 
 ### Surge
 
 ```ini
 [Rule]
-RULE-SET,https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/TigerMoomoo.list,PROXY
+RULE-SET,https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/Surge/TigerMoomoo.list,PROXY
 ```
 
 将 `PROXY` 换成自己的策略组，规则放在 `FINAL` 前。
@@ -124,7 +124,7 @@ App 内进入：**设置 → 规则 → 右上角 + → 类型选择 RULE-SET**�
 
 ```ini
 [Rule]
-RULE-SET,https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/TigerMoomoo.list,PROXY
+RULE-SET,https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/Shadowrocket/TigerMoomoo.list,PROXY
 ```
 
 ### Clash / mihomo
@@ -135,7 +135,7 @@ rule-providers:
     type: http
     behavior: classical
     format: yaml
-    url: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Clash/TigerMoomoo.yaml
+    url: https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/Clash/TigerMoomoo.yaml
     path: ./ruleset/TigerMoomoo.yaml
     interval: 86400
 
@@ -147,7 +147,7 @@ rules:
 
 ```ini
 [filter_remote]
-https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/TigerMoomoo.list, tag=TigerMoomoo, force-policy=节点选择, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/QuantumultX/TigerMoomoo.list, tag=TigerMoomoo, force-policy=节点选择, update-interval=86400, opt-parser=false, enabled=true
 ```
 
 ### sing-box
@@ -162,7 +162,7 @@ https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Quant
         "type": "remote",
         "tag": "tiger-moomoo",
         "format": "source",
-        "url": "https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/TigerMoomoo.json",
+        "url": "https://raw.githubusercontent.com/proxyBug/tigertrade-moomoo-rules/main/rule/sing-box/TigerMoomoo.json",
         "update_interval": "24h"
       }
     ],

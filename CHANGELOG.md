@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented here.
 
+## [0.1.2] - 2026-08-20
+
+### Changed
+
+- Repository renamed from `proxyBug/tigertrade-loon-rules` to `proxyBug/tigertrade-moomoo-rules` now that Moomoo/Futu is a first-class ruleset and six clients are supported.
+- All repository metadata, subscription URLs, generated headers, badges, examples, tests, release documentation, and the GitHub Stars monitor now use the new identity.
+
+### Compatibility
+
+- GitHub redirects the former repository and Git transport URLs to the new name. Existing subscribers should continue working, while new configurations should use the new URLs.
+
 ## [0.1.1] - 2026-08-20
 
 ### Added
