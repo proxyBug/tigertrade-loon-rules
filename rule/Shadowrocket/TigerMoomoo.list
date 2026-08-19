@@ -1,16 +1,35 @@
-# NAME: TigerTrade
-# DESC: 老虎证券 / 老虎国际 (Tiger Trade) 代理分流规则合集
+# NAME: TigerMoomoo
+# DESC: 老虎证券 (Tiger Trade) + 富途证券 (Moomoo) 代理分流规则合集
 # AUTHOR: proxyBug
 # REPO: https://github.com/proxyBug/tigertrade-loon-rules
-# TARGET: Surge
+# TARGET: Shadowrocket
 # UPDATED: 2026-08-20
-# DOMAIN-SUFFIX: 33
+# DOMAIN-SUFFIX: 57
 # DOMAIN-KEYWORD: 0
-# TOTAL: 33
+# TOTAL: 57
 
 DOMAIN-SUFFIX,atigrpulse.com
 DOMAIN-SUFFIX,atigrzen.com
 DOMAIN-SUFFIX,ftfast.com
+DOMAIN-SUFFIX,futu.cn
+DOMAIN-SUFFIX,futu.link
+DOMAIN-SUFFIX,futu5.com
+DOMAIN-SUFFIX,futuau.com
+DOMAIN-SUFFIX,futuesop.com
+DOMAIN-SUFFIX,futufin.com
+DOMAIN-SUFFIX,futuhk.com
+DOMAIN-SUFFIX,futuhk1.com
+DOMAIN-SUFFIX,futuhk2.com
+DOMAIN-SUFFIX,futuhkapp.com
+DOMAIN-SUFFIX,futuhn.com
+DOMAIN-SUFFIX,futuholdings.com
+DOMAIN-SUFFIX,futuniuniu.com
+DOMAIN-SUFFIX,futunn.com
+DOMAIN-SUFFIX,futuoa.com
+DOMAIN-SUFFIX,futusg.com
+DOMAIN-SUFFIX,futustatic.com
+DOMAIN-SUFFIX,fututrade.com
+DOMAIN-SUFFIX,fututrustee.com
 DOMAIN-SUFFIX,iotaskyt.com
 DOMAIN-SUFFIX,iotaskyty.com
 DOMAIN-SUFFIX,itiger.com
@@ -18,6 +37,11 @@ DOMAIN-SUFFIX,itigergrowth.com
 DOMAIN-SUFFIX,itigergrowtha.com
 DOMAIN-SUFFIX,itigerup.com
 DOMAIN-SUFFIX,laohu8.com
+DOMAIN-SUFFIX,moomoo.ca
+DOMAIN-SUFFIX,moomoo.com
+DOMAIN-SUFFIX,moomoobull.com
+DOMAIN-SUFFIX,moomooequity.com
+DOMAIN-SUFFIX,moomootrustee.com
 DOMAIN-SUFFIX,play-analytics.com
 DOMAIN-SUFFIX,skytigris.cn
 DOMAIN-SUFFIX,skytigris.com

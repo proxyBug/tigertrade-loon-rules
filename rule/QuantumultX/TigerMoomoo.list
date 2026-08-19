@@ -1,0 +1,68 @@
+# NAME: TigerMoomoo
+# DESC: 老虎证券 (Tiger Trade) + 富途证券 (Moomoo) 代理分流规则合集
+# AUTHOR: proxyBug
+# REPO: https://github.com/proxyBug/tigertrade-loon-rules
+# TARGET: Quantumult X
+# UPDATED: 2026-08-20
+# DOMAIN-SUFFIX: 57
+# DOMAIN-KEYWORD: 0
+# TOTAL: 57
+# 订阅时建议使用 force-policy=你的策略 覆盖默认策略名
+
+HOST-SUFFIX,atigrpulse.com,TigerMoomoo
+HOST-SUFFIX,atigrzen.com,TigerMoomoo
+HOST-SUFFIX,ftfast.com,TigerMoomoo
+HOST-SUFFIX,futu.cn,TigerMoomoo
+HOST-SUFFIX,futu.link,TigerMoomoo
+HOST-SUFFIX,futu5.com,TigerMoomoo
+HOST-SUFFIX,futuau.com,TigerMoomoo
+HOST-SUFFIX,futuesop.com,TigerMoomoo
+HOST-SUFFIX,futufin.com,TigerMoomoo
+HOST-SUFFIX,futuhk.com,TigerMoomoo
+HOST-SUFFIX,futuhk1.com,TigerMoomoo
+HOST-SUFFIX,futuhk2.com,TigerMoomoo
+HOST-SUFFIX,futuhkapp.com,TigerMoomoo
+HOST-SUFFIX,futuhn.com,TigerMoomoo
+HOST-SUFFIX,futuholdings.com,TigerMoomoo
+HOST-SUFFIX,futuniuniu.com,TigerMoomoo
+HOST-SUFFIX,futunn.com,TigerMoomoo
+HOST-SUFFIX,futuoa.com,TigerMoomoo
+HOST-SUFFIX,futusg.com,TigerMoomoo
+HOST-SUFFIX,futustatic.com,TigerMoomoo
+HOST-SUFFIX,fututrade.com,TigerMoomoo
+HOST-SUFFIX,fututrustee.com,TigerMoomoo
+HOST-SUFFIX,iotaskyt.com,TigerMoomoo
+HOST-SUFFIX,iotaskyty.com,TigerMoomoo
+HOST-SUFFIX,itiger.com,TigerMoomoo
+HOST-SUFFIX,itigergrowth.com,TigerMoomoo
+HOST-SUFFIX,itigergrowtha.com,TigerMoomoo
+HOST-SUFFIX,itigerup.com,TigerMoomoo
+HOST-SUFFIX,laohu8.com,TigerMoomoo
+HOST-SUFFIX,moomoo.ca,TigerMoomoo
+HOST-SUFFIX,moomoo.com,TigerMoomoo
+HOST-SUFFIX,moomoobull.com,TigerMoomoo
+HOST-SUFFIX,moomooequity.com,TigerMoomoo
+HOST-SUFFIX,moomootrustee.com,TigerMoomoo
+HOST-SUFFIX,play-analytics.com,TigerMoomoo
+HOST-SUFFIX,skytigris.cn,TigerMoomoo
+HOST-SUFFIX,skytigris.com,TigerMoomoo
+HOST-SUFFIX,tbdesk.com,TigerMoomoo
+HOST-SUFFIX,tigerbbs.cn,TigerMoomoo
+HOST-SUFFIX,tigerbbs.com,TigerMoomoo
+HOST-SUFFIX,tigerbrokers.com,TigerMoomoo
+HOST-SUFFIX,tigerbrokers.com.au,TigerMoomoo
+HOST-SUFFIX,tigerbrokers.com.hk,TigerMoomoo
+HOST-SUFFIX,tigerbrokers.com.sg,TigerMoomoo
+HOST-SUFFIX,tigerbrokers.net,TigerMoomoo
+HOST-SUFFIX,tigerbrokers.nz,TigerMoomoo
+HOST-SUFFIX,tigerfintech.com,TigerMoomoo
+HOST-SUFFIX,tigersecurities.com,TigerMoomoo
+HOST-SUFFIX,tigertcp.cn,TigerMoomoo
+HOST-SUFFIX,tigr.link,TigerMoomoo
+HOST-SUFFIX,tigrdw.com,TigerMoomoo
+HOST-SUFFIX,tigrwd.com,TigerMoomoo
+HOST-SUFFIX,tradeup.com,TigerMoomoo
+HOST-SUFFIX,ttm.financial,TigerMoomoo
+HOST-SUFFIX,xiaohu8.com,TigerMoomoo
+HOST-SUFFIX,zhijianfengyi.cn,TigerMoomoo
+HOST-SUFFIX,zhijianfengyi.com,TigerMoomoo

@@ -1,0 +1,40 @@
+# NAME: Moomoo
+# DESC: 富途证券 / Moomoo (Futu NiuNiu) 代理分流规则合集
+# AUTHOR: proxyBug
+# REPO: https://github.com/proxyBug/tigertrade-loon-rules
+# UPDATED: 2026-08-20
+# 适用于 Loon 远程规则 (Remote Rule) 订阅,策略组在订阅时自行指定
+# DOMAIN-SUFFIX: 24
+# DOMAIN-KEYWORD: 0
+# TOTAL: 24
+
+# > 核心平台 / App / OpenAPI
+DOMAIN-SUFFIX,moomoo.com
+DOMAIN-SUFFIX,moomoo.ca
+DOMAIN-SUFFIX,moomoobull.com
+DOMAIN-SUFFIX,futunn.com
+
+# > 富途主站、地区站与企业服务
+# 主体集合与 v2fly domain-list-community/data/futu 当前版本交叉验证
+DOMAIN-SUFFIX,futu.cn
+DOMAIN-SUFFIX,futu.link
+DOMAIN-SUFFIX,futu5.com
+DOMAIN-SUFFIX,futuau.com
+DOMAIN-SUFFIX,futuesop.com
+DOMAIN-SUFFIX,futufin.com
+DOMAIN-SUFFIX,futuhk.com
+DOMAIN-SUFFIX,futuhk1.com
+DOMAIN-SUFFIX,futuhk2.com
+DOMAIN-SUFFIX,futuhkapp.com
+DOMAIN-SUFFIX,futuhn.com
+DOMAIN-SUFFIX,futuholdings.com
+DOMAIN-SUFFIX,futuniuniu.com
+DOMAIN-SUFFIX,futuoa.com
+DOMAIN-SUFFIX,futusg.com
+DOMAIN-SUFFIX,futustatic.com
+DOMAIN-SUFFIX,fututrade.com
+DOMAIN-SUFFIX,fututrustee.com
+
+# > Moomoo 股权与信托服务
+DOMAIN-SUFFIX,moomooequity.com
+DOMAIN-SUFFIX,moomootrustee.com

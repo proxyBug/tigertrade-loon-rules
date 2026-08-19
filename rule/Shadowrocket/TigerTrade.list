@@ -3,29 +3,37 @@
 # AUTHOR: proxyBug
 # REPO: https://github.com/proxyBug/tigertrade-loon-rules
 # TARGET: Shadowrocket
-# UPDATED: 2026-06-11
-# DOMAIN-SUFFIX: 25
-# DOMAIN-KEYWORD: 1
-# TOTAL: 26
+# UPDATED: 2026-08-20
+# DOMAIN-SUFFIX: 33
+# DOMAIN-KEYWORD: 0
+# TOTAL: 33
 
 DOMAIN-SUFFIX,atigrpulse.com
 DOMAIN-SUFFIX,atigrzen.com
+DOMAIN-SUFFIX,ftfast.com
+DOMAIN-SUFFIX,iotaskyt.com
+DOMAIN-SUFFIX,iotaskyty.com
 DOMAIN-SUFFIX,itiger.com
 DOMAIN-SUFFIX,itigergrowth.com
 DOMAIN-SUFFIX,itigergrowtha.com
 DOMAIN-SUFFIX,itigerup.com
 DOMAIN-SUFFIX,laohu8.com
+DOMAIN-SUFFIX,play-analytics.com
 DOMAIN-SUFFIX,skytigris.cn
 DOMAIN-SUFFIX,skytigris.com
+DOMAIN-SUFFIX,tbdesk.com
 DOMAIN-SUFFIX,tigerbbs.cn
 DOMAIN-SUFFIX,tigerbbs.com
 DOMAIN-SUFFIX,tigerbrokers.com
 DOMAIN-SUFFIX,tigerbrokers.com.au
 DOMAIN-SUFFIX,tigerbrokers.com.hk
 DOMAIN-SUFFIX,tigerbrokers.com.sg
+DOMAIN-SUFFIX,tigerbrokers.net
 DOMAIN-SUFFIX,tigerbrokers.nz
 DOMAIN-SUFFIX,tigerfintech.com
 DOMAIN-SUFFIX,tigersecurities.com
+DOMAIN-SUFFIX,tigertcp.cn
+DOMAIN-SUFFIX,tigr.link
 DOMAIN-SUFFIX,tigrdw.com
 DOMAIN-SUFFIX,tigrwd.com
 DOMAIN-SUFFIX,tradeup.com
@@ -33,4 +41,3 @@ DOMAIN-SUFFIX,ttm.financial
 DOMAIN-SUFFIX,xiaohu8.com
 DOMAIN-SUFFIX,zhijianfengyi.cn
 DOMAIN-SUFFIX,zhijianfengyi.com
-DOMAIN-KEYWORD,tigerbrokers
