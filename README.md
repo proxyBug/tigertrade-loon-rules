@@ -1,26 +1,74 @@
-# Tiger Trade & Moomoo Proxy Rules
+# Tiger Trade + Moomoo/Futu 代理分流规则
 
+[![Release](https://img.shields.io/github/v/release/proxyBug/tigertrade-loon-rules?display_name=tag)](https://github.com/proxyBug/tigertrade-loon-rules/releases/latest)
 [![Validate rules](https://github.com/proxyBug/tigertrade-loon-rules/actions/workflows/validate.yml/badge.svg)](https://github.com/proxyBug/tigertrade-loon-rules/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-老虎证券（Tiger Trade）与富途证券 / Moomoo 的代理分流规则集。提供单独订阅与合并订阅，覆盖 **Loon、Surge、Shadowrocket、Clash/mihomo、Quantumult X、sing-box** 六种客户端。
+> 官网能打开，行情、登录、下单或活动页却仍旧偶发卡住？问题往往出在 App 背后那批不显眼的 API、CDN、交易接口和地区门户。
 
-> 仓库名称为兼容既有订阅地址而保留。所有 `main` 分支 Raw URL 持续有效。
+这个仓库给 **老虎证券 Tiger Trade** 与 **富途证券 / Moomoo** 做完整的应用级代理分流。它不只收几个官网域名，也不靠一条宽泛关键字把无关网站一起兜进代理：规则来自官方 runtime、OpenAPI、地区站、DNS/TLS 与社区数据的交叉核验，再统一生成六种客户端格式。
 
-## 规则集
+- **三套规则**：Tiger、Moomoo/Futu、Tiger + Moomoo 合并版
+- **六种客户端**：Loon、Surge、Shadowrocket、Clash/mihomo、Quantumult X、sing-box
+- **零宽泛关键字**：全部使用显式 `DOMAIN-SUFFIX`，减少误伤
+- **可复现维护**：两份源文件生成全部格式，11 项测试与 GitHub Actions 自动防漂移
 
-| 规则集 | DOMAIN-SUFFIX | DOMAIN-KEYWORD | 合计 | 适用场景 |
-| --- | ---: | ---: | ---: | --- |
-| Tiger Trade | 33 | 0 | **33** | 仅使用老虎证券 |
-| Moomoo / Futu | 24 | 0 | **24** | 仅使用富途 / Moomoo |
-| Tiger + Moomoo | 57 | 0 | **57** | 同时使用两家平台 |
+## 为什么值得用
 
-本项目采用经过核验的显式域名后缀白名单，不使用宽泛的子串关键字。共享云厂商 IP、通用推送域名及进程名暂不收入主规则集，以降低误分流和地址漂移风险。
+### Tiger Trade：从“常见域名列表”推进到“官方运行时覆盖”
+
+2026-08-20 的官方 runtime/bootstrap 审计提取到 **185 条 URL 引用、125 个唯一主机**。本仓库覆盖其中 **120 个 Tiger 第一方主机**；剩余 5 个是 USAA、微博、微信、小米、Facebook 等第三方集成，按边界主动排除。
+
+| 覆盖能力 | 本仓库 | blackmatrix7 TigerFintech | v2fly itiger |
+| --- | :---: | :---: | :---: |
+| 显式后缀规则数 | **40** | 19 | 9 |
+| 官方 runtime 字段级核验 | **✅ 120 / 125 主机** | — | — |
+| App 核心 API / 行情 / 交易 | ✅ | ✅ | ✅ |
+| 升级、配置、数据与加速域名 | **✅ 完整度更高** | ⚠️ 部分 | ⚠️ 部分 |
+| 新西兰交易与客户接口 | ✅ | ❌ | ❌ |
+| Tiger ESOP 接口 | ✅ | ❌ | ❌ |
+| 香港、澳洲、新马、印尼、越南地区门户 | ✅ | ❌ | ❌ |
+| 各地区官网、美国关联实体 | ✅ | ⚠️ 少量 | ❌ |
+| 社区、资讯与 TigerGPT | ✅ | ⚠️ 部分 | ⚠️ 部分 |
+| 可直接订阅的客户端格式 | **6 种** | 5 种常见客户端 | 上游域名数据源 |
+| 收录/撤下证据矩阵 | ✅ | ❌ | ❌ |
+
+对比基于 2026-08-20 的公开版本：
+
+- [blackmatrix7 TigerFintech](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Loon/TigerFintech)：19 条，与本仓库共有 16 条；`tbdesk.com`、`tigertcp.cn`、`tigerbrokers.net` 暂无当前官方 runtime 或实时流量证据，因此没有盲目照抄。
+- [v2fly `data/itiger`](https://github.com/v2fly/domain-list-community/blob/master/data/itiger)：9 条，本仓库全部覆盖，并另外收录 31 条经独立证据确认的第一方域名。
+
+所以这里追求的并非“数字越大越好”。真正的差别是：**该补的补到交易、客户与地区门户；证据不足的，哪怕别家有，也先按住。**
+
+### Moomoo/Futu：完整覆盖 v2fly，再补三处官方服务
+
+| 覆盖能力 | 本仓库 | v2fly `data/futu` |
+| --- | :---: | :---: |
+| 显式后缀规则数 | **24** | 21 |
+| v2fly 当前域名 | **✅ 21 / 21** | ✅ |
+| Moomoo Canada | ✅ `moomoo.ca` | ❌ |
+| Moomoo Bull 服务域名 | ✅ `moomoobull.com` | ❌ |
+| Futu Trustee 官方信托服务 | ✅ `fututrustee.com` | ❌ |
+| 六客户端独立规则 + 合并规则 | ✅ | ❌ |
+| 宽泛 `moomoo` / `futunn` 关键字 | **❌ 主动不用** | ❌ |
+
+`moomoo.com.au` 当前已成为停放域名，`moomoo.jp` 属于无关动物医院；这类“名字看起来很像”的域名不会因为好看就进入规则。
+
+## 选哪一套
+
+| 你的情况 | 推荐规则 |
+| --- | --- |
+| 只使用 Tiger Trade | `TigerTrade` |
+| 只使用 Moomoo / 富途牛牛 | `Moomoo` |
+| 两款都用，或懒得分别配置 | **`TigerMoomoo` 合并规则** |
+
+当前规模：Tiger **40** 条、Moomoo/Futu **24** 条、合并版 **64** 条；全部为显式后缀规则。
 
 ## 订阅地址
 
-| 客户端 | Tiger Trade | Moomoo / Futu | 合并规则 |
+| 客户端 | Tiger Trade | Moomoo / Futu | Tiger + Moomoo |
 | --- | --- | --- | --- |
-| **Loon** | [`TigerTrade.list`][loon-tiger] | [`Moomoo.list`][loon-moomoo] | [`TigerMoomoo.list`][loon-combined] |
+| **Loon** | [`TigerTrade.list`][loon-tiger] | [`Moomoo.list`][loon-moomoo] | **[`TigerMoomoo.list`][loon-combined]** |
 | Surge | [`TigerTrade.list`][surge-tiger] | [`Moomoo.list`][surge-moomoo] | [`TigerMoomoo.list`][surge-combined] |
 | Shadowrocket | [`TigerTrade.list`][shadowrocket-tiger] | [`Moomoo.list`][shadowrocket-moomoo] | [`TigerMoomoo.list`][shadowrocket-combined] |
 | Clash / mihomo | [`TigerTrade.yaml`][clash-tiger] | [`Moomoo.yaml`][clash-moomoo] | [`TigerMoomoo.yaml`][clash-combined] |
@@ -46,25 +94,38 @@
 [singbox-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/Moomoo.json
 [singbox-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/TigerMoomoo.json
 
-## 客户端示例
+> 上表是持续更新的 `main` 通道。需要固定版本时，把 URL 中的 `main` 换成版本号，例如 `v0.1.1`。
 
-以下示例使用合并规则。只使用一家平台时，替换为上表对应链接即可。
+## 怎么添加
+
+下面以 **TigerMoomoo 合并规则** 为例。只用一家券商时，换成上表对应文件即可。
 
 ### Loon
+
+App 内进入：**配置 → 规则 → 远程规则 → 右上角 +**，粘贴 Loon 链接并选择策略。
 
 ```ini
 [Remote Rule]
 https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/TigerMoomoo.list, policy=PROXY, tag=TigerMoomoo, enabled=true
 ```
 
-### Surge / Shadowrocket
+### Surge
 
 ```ini
 [Rule]
 RULE-SET,https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/TigerMoomoo.list,PROXY
 ```
 
-Shadowrocket 用户将 URL 换成 `rule/Shadowrocket/TigerMoomoo.list`。`PROXY` 替换为自己的策略组名，并将规则放在 `FINAL` 前。
+将 `PROXY` 换成自己的策略组，规则放在 `FINAL` 前。
+
+### Shadowrocket
+
+App 内进入：**设置 → 规则 → 右上角 + → 类型选择 RULE-SET**。
+
+```ini
+[Rule]
+RULE-SET,https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/TigerMoomoo.list,PROXY
+```
 
 ### Clash / mihomo
 
@@ -91,7 +152,7 @@ https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Quant
 
 ### sing-box
 
-需要 sing-box **1.10 或更新版本**。将示例中的 `proxy` 替换为配置里真实存在的 outbound tag。
+需要 sing-box **1.10 或更新版本**。把示例中的 `proxy` 换成配置里真实存在的 outbound tag。
 
 ```json
 {
@@ -112,22 +173,38 @@ https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Quant
 }
 ```
 
-## 数据来源与收录原则
+## 规则里有什么
 
-最近审计：**2026-08-20**。
+### Tiger Trade（40 条）
 
-规则按以下证据层级维护：
+- **核心 App / API**：`itiger.com`、`itigerup.com`、`tigerfintech.com`
+- **新西兰交易与客户接口**：`itiger-nz.com`
+- **ESOP**：`tigeresop.com`、`tigeresop.com.sg`
+- **升级、配置、日志与数据**：`play-analytics.com`、`ftfast.com`、`iotaskyt.com`、`iotaskyty.com`
+- **加速与备用链路**：`skytigris.*`、`itigergrowth*`、`atigr*`、`tigr*`
+- **地区门户**：`etasphere.com`、`gotigerhk.com`、`itigertrader.com`、`tigerhkgo.com`、`tigertrader.app`、`tigrgood.com` 等
+- **地区官网与关联实体**：Tiger Brokers 各地区站、Tiger Securities、TradeUP
+- **社区与资讯**：老虎社区、TigerBBS、TTM / TigerGPT
 
-1. 平台官网、OpenAPI 文档、地区站及企业服务页面；
-2. [v2fly `data/itiger`](https://github.com/v2fly/domain-list-community/blob/master/data/itiger) 与 [v2fly `data/futu`](https://github.com/v2fly/domain-list-community/blob/master/data/futu)；
-3. [blackmatrix7 TigerFintech](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Loon/TigerFintech)；
-4. DNS、TLS、HTTP 跳转及社区抓包资料，用作交叉确认。
+完整清单见 [`TigerTrade.list`](TigerTrade.list)。官方 runtime 的字段路径、DNS/TLS 交叉结果以及“为什么加、为什么不加”见 [`evidence/tiger-runtime-2026-08-20.json`](evidence/tiger-runtime-2026-08-20.json)。
 
-单次 DNS 失效不自动触发删除：部分交易、备用或地区端点可能按网络位置和业务状态启停。新增与移除均以多源证据为准。宽泛关键字、共享 CDN、云厂商 IP 段和第三方推送域名默认排除。
+### Moomoo / Futu（24 条）
 
-## 维护与验证
+- **核心平台 / OpenAPI**：`moomoo.com`、`futunn.com`、`moomoobull.com`
+- **地区与企业服务**：香港、新加坡、澳洲、加拿大站及 Futu Holdings
+- **行情、交易与静态资源**：`futu5.com`、`futustatic.com`、`fututrade.com` 等
+- **ESOP 与信托**：`futuesop.com`、`fututrustee.com`、`moomooequity.com`、`moomootrustee.com`
 
-根目录的 `TigerTrade.list` 与 `Moomoo.list` 是手工维护源。其余规则文件均由生成器产出：
+完整清单见 [`Moomoo.list`](Moomoo.list)。
+
+## 这套规则如何维护
+
+根目录只有两份手工维护源：
+
+- `TigerTrade.list`
+- `Moomoo.list`
+
+其余客户端文件和合并规则都由脚本生成：
 
 ```bash
 python3 scripts/generate.py
@@ -135,20 +212,25 @@ python3 -m unittest discover -s tests -v
 python3 scripts/generate.py --check
 ```
 
-`--check` 只检查生成文件是否漂移，不改写工作区。GitHub Actions 会在每次 Pull Request 和 `main` 分支提交时运行同一套验证。
+生成器会拒绝空值、非法域名、未知类型、重复规则和多余字段；`--check` 只检查漂移，不改文件。GitHub Actions 会在每个 PR 与 `main` 提交上执行同一套验证。
+
+## 证据边界
+
+- 直接证据优先：官方 runtime、OpenAPI、官网与当前 App 服务字段。
+- DNS、TLS SAN、HTTP 跳转用于确认归属和现状。
+- v2fly、blackmatrix7 与社区抓包用于发现候选，不作为“见到就抄”的授权。
+- 共享云厂商 IP、通用推送、社交平台和宽泛关键字默认排除。
+- 暂无当前证据的域名留在候选记录里，等 App 制品或实时流量再次证明。
+
+最近审计：**2026-08-20**。上游版本、许可证与来源说明见 [NOTICE.md](NOTICE.md)。
 
 ## English
 
-Explicit domain-suffix proxy rule sets for Tiger Trade and Moomoo/Futu, available separately or as a combined set for six proxy clients. The two root Loon files are the maintained sources; all other formats are generated and validated in CI. Broad substring keywords, shared-CDN IP ranges, and generic push-service domains are intentionally excluded to reduce false routing.
+Evidence-driven, domain-suffix-only proxy rules for Tiger Trade and Moomoo/Futu. The repository provides standalone and combined subscriptions for six clients. Tiger coverage is validated against the current official runtime/bootstrap map; Moomoo/Futu includes the complete current v2fly set plus independently confirmed service domains. Generated formats are deterministic and protected by tests and CI.
 
-## 说明
+## 说明与许可
 
-- 本项目仅用于网络分流，与 Tiger Brokers、Futu Holdings 或 Moomoo Financial 无隶属关系。
-- 规则无法保证覆盖平台未来新增的全部端点；欢迎通过 Issue 提交可复现的缺失域名证据。
-- 使用者应自行确认当地法律、平台条款与账户风险。
-
-## License
-
-[MIT](LICENSE)
-
-Upstream comparison sources and their licenses are recorded in [NOTICE.md](NOTICE.md).
+- 本项目只提供网络分流规则，与 Tiger Brokers、Futu Holdings、Moomoo Financial 无隶属关系。
+- 规则不会绕过账户资格、地区限制或平台风控；请自行遵守当地法律与平台条款。
+- 如发现缺失域名，请提交可复现的主机名、功能和来源；请勿上传账户标识、Token 或完整流量载荷。
+- 项目采用 [MIT License](LICENSE)；第三方来源及许可证见 [NOTICE.md](NOTICE.md)。

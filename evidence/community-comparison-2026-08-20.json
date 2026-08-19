@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "audited_at": "2026-08-20T02:02:00+08:00",
+  "tiger": {
+    "repository_count": 40,
+    "blackmatrix": {
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/TigerFintech/TigerFintech.list",
+      "commit": "86ada72372ec0586be75901f47d5ccca6e28c655",
+      "count": 19,
+      "shared_with_repository": 16,
+      "held_not_copied": [
+        "tbdesk.com",
+        "tigerbrokers.net",
+        "tigertcp.cn"
+      ]
+    },
+    "v2fly": {
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/itiger",
+      "commit": "5e1035c6f2458efa45ac825a798960ed0c310110",
+      "count": 9,
+      "shared_with_repository": 9,
+      "missing_from_repository": []
+    },
+    "repository_extra_over_blackmatrix": 24,
+    "repository_extra_over_v2fly": 31
+  },
+  "moomoo": {
+    "repository_count": 24,
+    "v2fly": {
+      "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/futu",
+      "commit": "5e1035c6f2458efa45ac825a798960ed0c310110",
+      "count": 21,
+      "shared_with_repository": 21,
+      "missing_from_repository": []
+    },
+    "repository_additions": [
+      "fututrustee.com",
+      "moomoo.ca",
+      "moomoobull.com"
+    ]
+  },
+  "method": "Exact DOMAIN-SUFFIX set comparison. Counts exclude comments, keyword rules, URL occurrences, and generated-format duplicates."
+}

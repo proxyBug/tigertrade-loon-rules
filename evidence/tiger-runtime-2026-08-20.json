@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "source_url": "https://up.play-analytics.com/",
+  "source_checked_at": "2026-08-20T01:55:13+08:00",
+  "semantic_occurrences_sha256": "d735e088c4eec79e7d69e4286799e7fd5c58df34bbac6be7d4c82845095fea54",
+  "semantic_hash_definition": "SHA-256 of the canonical sorted JSON array of (field_path, hostname, URL) tuples; raw response bytes are dynamic and intentionally not hashed.",
+  "baseline_commit": "361843cd0a31f1674095b3e87b7221abbe2ed35a",
+  "runtime_summary_before_update": {
+    "url_references": 185,
+    "unique_hosts": 125,
+    "covered_unique_hosts": 106,
+    "uncovered_unique_hosts": 19
+  },
+  "included_first_party": [
+    {
+      "root_domain": "tigeresop.com",
+      "runtime_hosts": ["api.tigeresop.com", "www.tigeresop.com"],
+      "field_paths": ["root.items[0].esop-api.COMMON", "root.items[0].esop-web-api.COMMON"],
+      "functions": ["ESOP API", "ESOP web"],
+      "evidence_tier": "A+B",
+      "state": "active core",
+      "corroboration": "Official runtime fields plus live dual-resolver DNS and a Tiger-associated TLS SAN bundle."
+    },
+    {
+      "root_domain": "tigeresop.com.sg",
+      "runtime_hosts": ["api.tigeresop.com.sg", "www.tigeresop.com.sg"],
+      "field_paths": ["root.items[0].esop-api.SGP", "root.items[0].esop-web-api.SGP"],
+      "functions": ["Singapore ESOP API", "Singapore ESOP web"],
+      "evidence_tier": "A",
+      "state": "regional reserve",
+      "corroboration": "Current official runtime fields; endpoints were not publicly resolving at the audit location."
+    },
+    {
+      "root_domain": "etasphere.com",
+      "runtime_hosts": ["au.etasphere.com", "sg.etasphere.com"],
+      "field_paths": ["root.items[0].portal-activity.AUS", "root.items[0].portal-activity.MYS", "root.items[0].portal-activity.SGP"],
+      "functions": ["Australia activity portal", "Malaysia/Singapore activity portal"],
+      "evidence_tier": "A+B",
+      "state": "active regional",
+      "corroboration": "Official runtime fields, Google/Cloudflare DNS agreement, and TLS SANs grouped with confirmed Tiger infrastructure."
+    },
+    {
+      "root_domain": "itiger-nz.com",
+      "runtime_hosts": ["customer.itiger-nz.com", "trade.itiger-nz.com"],
+      "field_paths": ["root.items[0].customer.TBKIWI", "root.items[0].trade.TBKIWI"],
+      "functions": ["New Zealand customer service", "New Zealand trading"],
+      "evidence_tier": "A+B",
+      "state": "active core",
+      "corroboration": "Official runtime fields, dual-resolver DNS, and a current wildcard TLS certificate."
+    },
+    {
+      "root_domain": "gotigerhk.com",
+      "runtime_hosts": ["www.gotigerhk.com"],
+      "field_paths": ["root.items[0].portal-activity.HKG"],
+      "functions": ["Hong Kong activity portal"],
+      "evidence_tier": "A+B",
+      "state": "active regional",
+      "corroboration": "Official runtime field, dual-resolver DNS, and matching current TLS SAN."
+    },
+    {
+      "root_domain": "itigertrader.com",
+      "runtime_hosts": ["www.itigertrader.com"],
+      "field_paths": ["root.items[0].portal-server.IDN", "root.items[0].portal.IDN"],
+      "functions": ["Indonesia portal", "Indonesia portal server"],
+      "evidence_tier": "A+B",
+      "state": "active regional",
+      "corroboration": "Official runtime fields, dual-resolver DNS, and Tiger infrastructure TLS SAN grouping."
+    },
+    {
+      "root_domain": "thetigerbrokers.com",
+      "runtime_hosts": ["www.thetigerbrokers.com"],
+      "field_paths": ["root.items[0].portal-activity.NZL"],
+      "functions": ["New Zealand activity portal"],
+      "evidence_tier": "A+B",
+      "state": "active regional",
+      "corroboration": "Official runtime field, dual-resolver DNS, and a current branded Tiger portal SAN bundle."
+    },
+    {
+      "root_domain": "tigerhkgo.com",
+      "runtime_hosts": ["www.tigerhkgo.com"],
+      "field_paths": ["root.items[0].portal-server.HKG", "root.items[0].portal.HKG"],
+      "functions": ["Hong Kong portal", "Hong Kong portal server"],
+      "evidence_tier": "A+B",
+      "state": "active regional",
+      "corroboration": "Official runtime fields, dual-resolver DNS, and Tiger infrastructure TLS SAN grouping."
+    },
+    {
+      "root_domain": "tigertrader.app",
+      "runtime_hosts": ["www.tigertrader.app"],
+      "field_paths": ["root.items[0].portal-activity.VNM"],
+      "functions": ["Vietnam activity portal"],
+      "evidence_tier": "A+B",
+      "state": "active regional",
+      "corroboration": "Official runtime field, dual-resolver DNS, and current Tiger portal TLS certificate."
+    },
+    {
+      "root_domain": "tigrgood.com",
+      "runtime_hosts": ["www.tigrgood.com"],
+      "field_paths": ["root.items[0].portal-activity.IDN"],
+      "functions": ["Indonesia activity portal"],
+      "evidence_tier": "A+B",
+      "state": "active regional",
+      "corroboration": "Official runtime field, dual-resolver DNS, and TLS SANs grouped with Tiger service domains."
+    }
+  ],
+  "excluded_third_party": [
+    {
+      "root_domain": "usaa.com",
+      "runtime_hosts": ["api.usaa.com"],
+      "field_paths": ["root.items[0].whitelist"],
+      "reason": "Third-party whitelist entry, not Tiger-owned routing scope."
+    },
+    {
+      "root_domain": "weibo.com",
+      "runtime_hosts": ["api.weibo.com"],
+      "field_paths": ["root.items[0].weibo"],
+      "reason": "Third-party social integration."
+    },
+    {
+      "root_domain": "qq.com",
+      "runtime_hosts": ["api.weixin.qq.com"],
+      "field_paths": ["root.items[0].wechat"],
+      "reason": "Third-party WeChat integration."
+    },
+    {
+      "root_domain": "mi.com",
+      "runtime_hosts": ["app.mi.com"],
+      "field_paths": ["root.items[0].token-android"],
+      "reason": "Third-party Android distribution integration."
+    },
+    {
+      "root_domain": "facebook.com",
+      "runtime_hosts": ["graph.facebook.com"],
+      "field_paths": ["root.items[0].facebook"],
+      "reason": "Third-party social integration."
+    }
+  ],
+  "held_or_removed": [
+    {
+      "root_domain": "tbdesk.com",
+      "reason": "Community-list lead with no current official runtime reference or public DNS at audit time."
+    },
+    {
+      "root_domain": "tigertcp.cn",
+      "reason": "Certificate-history/community lead without direct current runtime evidence."
+    },
+    {
+      "root_domain": "tigerbrokers.net",
+      "reason": "Community/certificate-history lead with no current official runtime reference or public DNS at audit time."
+    }
+  ]
+}

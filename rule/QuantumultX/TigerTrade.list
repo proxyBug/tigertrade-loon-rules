@@ -4,38 +4,45 @@
 # REPO: https://github.com/proxyBug/tigertrade-loon-rules
 # TARGET: Quantumult X
 # UPDATED: 2026-08-20
-# DOMAIN-SUFFIX: 33
+# DOMAIN-SUFFIX: 40
 # DOMAIN-KEYWORD: 0
-# TOTAL: 33
+# TOTAL: 40
 # 订阅时建议使用 force-policy=你的策略 覆盖默认策略名
 
 HOST-SUFFIX,atigrpulse.com,TigerTrade
 HOST-SUFFIX,atigrzen.com,TigerTrade
+HOST-SUFFIX,etasphere.com,TigerTrade
 HOST-SUFFIX,ftfast.com,TigerTrade
+HOST-SUFFIX,gotigerhk.com,TigerTrade
 HOST-SUFFIX,iotaskyt.com,TigerTrade
 HOST-SUFFIX,iotaskyty.com,TigerTrade
+HOST-SUFFIX,itiger-nz.com,TigerTrade
 HOST-SUFFIX,itiger.com,TigerTrade
 HOST-SUFFIX,itigergrowth.com,TigerTrade
 HOST-SUFFIX,itigergrowtha.com,TigerTrade
+HOST-SUFFIX,itigertrader.com,TigerTrade
 HOST-SUFFIX,itigerup.com,TigerTrade
 HOST-SUFFIX,laohu8.com,TigerTrade
 HOST-SUFFIX,play-analytics.com,TigerTrade
 HOST-SUFFIX,skytigris.cn,TigerTrade
 HOST-SUFFIX,skytigris.com,TigerTrade
-HOST-SUFFIX,tbdesk.com,TigerTrade
+HOST-SUFFIX,thetigerbrokers.com,TigerTrade
 HOST-SUFFIX,tigerbbs.cn,TigerTrade
 HOST-SUFFIX,tigerbbs.com,TigerTrade
 HOST-SUFFIX,tigerbrokers.com,TigerTrade
 HOST-SUFFIX,tigerbrokers.com.au,TigerTrade
 HOST-SUFFIX,tigerbrokers.com.hk,TigerTrade
 HOST-SUFFIX,tigerbrokers.com.sg,TigerTrade
-HOST-SUFFIX,tigerbrokers.net,TigerTrade
 HOST-SUFFIX,tigerbrokers.nz,TigerTrade
+HOST-SUFFIX,tigeresop.com,TigerTrade
+HOST-SUFFIX,tigeresop.com.sg,TigerTrade
 HOST-SUFFIX,tigerfintech.com,TigerTrade
+HOST-SUFFIX,tigerhkgo.com,TigerTrade
 HOST-SUFFIX,tigersecurities.com,TigerTrade
-HOST-SUFFIX,tigertcp.cn,TigerTrade
+HOST-SUFFIX,tigertrader.app,TigerTrade
 HOST-SUFFIX,tigr.link,TigerTrade
 HOST-SUFFIX,tigrdw.com,TigerTrade
+HOST-SUFFIX,tigrgood.com,TigerTrade
 HOST-SUFFIX,tigrwd.com,TigerTrade
 HOST-SUFFIX,tradeup.com,TigerTrade
 HOST-SUFFIX,ttm.financial,TigerTrade

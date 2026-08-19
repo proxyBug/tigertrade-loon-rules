@@ -2,6 +2,23 @@
 
 All notable changes to this project are documented here.
 
+## [0.1.1] - 2026-08-20
+
+### Added
+
+- Ten Tiger first-party root domains exposed by the current official runtime/bootstrap configuration, covering New Zealand trade/customer services, ESOP, and regional portals.
+- Machine-readable runtime and community-comparison matrices with field paths, pinned upstream revisions, evidence tiers, DNS/TLS corroboration, third-party exclusions, and held-domain decisions.
+
+### Changed
+
+- Tiger runtime coverage increased from 106 to 120 of 125 unique hosts; the five remaining hosts are explicitly excluded third-party integrations.
+- Tiger rules now contain 40 explicit suffixes; the combined Tiger + Moomoo set contains 64.
+- README rebuilt around the project's real value: current side-by-side community comparisons, a clear rule-choice path, complete subscription links, and practical client setup examples.
+
+### Removed
+
+- `tbdesk.com`, `tigertcp.cn`, and `tigerbrokers.net` pending direct current runtime or live-traffic evidence.
+
 ## [0.1.0] - 2026-08-20
 
 ### Added
