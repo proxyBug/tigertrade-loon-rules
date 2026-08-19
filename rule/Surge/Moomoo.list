@@ -3,17 +3,32 @@
 # AUTHOR: proxyBug
 # REPO: https://github.com/proxyBug/tigertrade-loon-rules
 # TARGET: Surge
-# UPDATED: 2026-06-23
-# DOMAIN-SUFFIX: 7
-# DOMAIN-KEYWORD: 2
-# TOTAL: 9
+# UPDATED: 2026-08-20
+# DOMAIN-SUFFIX: 24
+# DOMAIN-KEYWORD: 0
+# TOTAL: 24
 
-DOMAIN-SUFFIX,futu.inc
+DOMAIN-SUFFIX,futu.cn
+DOMAIN-SUFFIX,futu.link
 DOMAIN-SUFFIX,futu5.com
+DOMAIN-SUFFIX,futuau.com
+DOMAIN-SUFFIX,futuesop.com
+DOMAIN-SUFFIX,futufin.com
 DOMAIN-SUFFIX,futuhk.com
+DOMAIN-SUFFIX,futuhk1.com
+DOMAIN-SUFFIX,futuhk2.com
+DOMAIN-SUFFIX,futuhkapp.com
+DOMAIN-SUFFIX,futuhn.com
+DOMAIN-SUFFIX,futuholdings.com
+DOMAIN-SUFFIX,futuniuniu.com
 DOMAIN-SUFFIX,futunn.com
+DOMAIN-SUFFIX,futuoa.com
 DOMAIN-SUFFIX,futusg.com
+DOMAIN-SUFFIX,futustatic.com
+DOMAIN-SUFFIX,fututrade.com
+DOMAIN-SUFFIX,fututrustee.com
+DOMAIN-SUFFIX,moomoo.ca
 DOMAIN-SUFFIX,moomoo.com
-DOMAIN-SUFFIX,nniuvip.com
-DOMAIN-KEYWORD,futunn
-DOMAIN-KEYWORD,moomoo
+DOMAIN-SUFFIX,moomoobull.com
+DOMAIN-SUFFIX,moomooequity.com
+DOMAIN-SUFFIX,moomootrustee.com

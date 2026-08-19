@@ -3,36 +3,61 @@
 # AUTHOR: proxyBug
 # REPO: https://github.com/proxyBug/tigertrade-loon-rules
 # TARGET: Surge
-# UPDATED: 2026-06-23
-# DOMAIN-SUFFIX: 32
-# DOMAIN-KEYWORD: 3
-# TOTAL: 35
+# UPDATED: 2026-08-20
+# DOMAIN-SUFFIX: 57
+# DOMAIN-KEYWORD: 0
+# TOTAL: 57
 
 DOMAIN-SUFFIX,atigrpulse.com
 DOMAIN-SUFFIX,atigrzen.com
-DOMAIN-SUFFIX,futu.inc
+DOMAIN-SUFFIX,ftfast.com
+DOMAIN-SUFFIX,futu.cn
+DOMAIN-SUFFIX,futu.link
 DOMAIN-SUFFIX,futu5.com
+DOMAIN-SUFFIX,futuau.com
+DOMAIN-SUFFIX,futuesop.com
+DOMAIN-SUFFIX,futufin.com
 DOMAIN-SUFFIX,futuhk.com
+DOMAIN-SUFFIX,futuhk1.com
+DOMAIN-SUFFIX,futuhk2.com
+DOMAIN-SUFFIX,futuhkapp.com
+DOMAIN-SUFFIX,futuhn.com
+DOMAIN-SUFFIX,futuholdings.com
+DOMAIN-SUFFIX,futuniuniu.com
 DOMAIN-SUFFIX,futunn.com
+DOMAIN-SUFFIX,futuoa.com
 DOMAIN-SUFFIX,futusg.com
+DOMAIN-SUFFIX,futustatic.com
+DOMAIN-SUFFIX,fututrade.com
+DOMAIN-SUFFIX,fututrustee.com
+DOMAIN-SUFFIX,iotaskyt.com
+DOMAIN-SUFFIX,iotaskyty.com
 DOMAIN-SUFFIX,itiger.com
 DOMAIN-SUFFIX,itigergrowth.com
 DOMAIN-SUFFIX,itigergrowtha.com
 DOMAIN-SUFFIX,itigerup.com
 DOMAIN-SUFFIX,laohu8.com
+DOMAIN-SUFFIX,moomoo.ca
 DOMAIN-SUFFIX,moomoo.com
-DOMAIN-SUFFIX,nniuvip.com
+DOMAIN-SUFFIX,moomoobull.com
+DOMAIN-SUFFIX,moomooequity.com
+DOMAIN-SUFFIX,moomootrustee.com
+DOMAIN-SUFFIX,play-analytics.com
 DOMAIN-SUFFIX,skytigris.cn
 DOMAIN-SUFFIX,skytigris.com
+DOMAIN-SUFFIX,tbdesk.com
 DOMAIN-SUFFIX,tigerbbs.cn
 DOMAIN-SUFFIX,tigerbbs.com
 DOMAIN-SUFFIX,tigerbrokers.com
 DOMAIN-SUFFIX,tigerbrokers.com.au
 DOMAIN-SUFFIX,tigerbrokers.com.hk
 DOMAIN-SUFFIX,tigerbrokers.com.sg
+DOMAIN-SUFFIX,tigerbrokers.net
 DOMAIN-SUFFIX,tigerbrokers.nz
 DOMAIN-SUFFIX,tigerfintech.com
 DOMAIN-SUFFIX,tigersecurities.com
+DOMAIN-SUFFIX,tigertcp.cn
+DOMAIN-SUFFIX,tigr.link
 DOMAIN-SUFFIX,tigrdw.com
 DOMAIN-SUFFIX,tigrwd.com
 DOMAIN-SUFFIX,tradeup.com
@@ -40,6 +65,3 @@ DOMAIN-SUFFIX,ttm.financial
 DOMAIN-SUFFIX,xiaohu8.com
 DOMAIN-SUFFIX,zhijianfengyi.cn
 DOMAIN-SUFFIX,zhijianfengyi.com
-DOMAIN-KEYWORD,futunn
-DOMAIN-KEYWORD,moomoo
-DOMAIN-KEYWORD,tigerbrokers

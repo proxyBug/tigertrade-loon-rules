@@ -1,150 +1,264 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""从根目录源文件生成各客户端格式的规则文件。
+"""Generate all client rule formats from the two root Loon sources.
 
-源文件 (手动维护):
-  TigerTrade.list  — 老虎证券 (Tiger Trade)
-  Moomoo.list      — 富途证券 / Moomoo
+Manually maintained sources:
+  TigerTrade.list
+  Moomoo.list
 
-生成文件:
-  rule/*/TigerTrade.*    — 老虎证券各客户端格式
-  rule/*/Moomoo.*        — 富途 / Moomoo 各客户端格式
-  TigerMoomoo.list       — 合并 Loon 格式 (根目录)
-  rule/*/TigerMoomoo.*   — 合并各客户端格式
-
-用法: python3 scripts/generate.py
+Usage:
+  python3 scripts/generate.py
+  python3 scripts/generate.py --check
 """
-import datetime
-import io
-import json
-import os
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
 REPO = "https://github.com/proxyBug/tigertrade-loon-rules"
 
 TIGER_DESC = "老虎证券 / 老虎国际 (Tiger Trade) 代理分流规则合集"
 MOOMOO_DESC = "富途证券 / Moomoo 代理分流规则合集"
 COMBINED_DESC = "老虎证券 (Tiger Trade) + 富途证券 (Moomoo) 代理分流规则合集"
+DOMAIN_RE = re.compile(
+    r"^(?=.{1,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+"
+    r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+)
+KEYWORD_RE = re.compile(r"^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")
 
 
-def parse_source(relpath):
-    suffixes, keywords = set(), set()
-    path = os.path.join(ROOT, relpath)
-    with io.open(path, encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            rtype, _, value = line.partition(",")
-            value = value.strip()
-            if rtype == "DOMAIN-SUFFIX":
-                suffixes.add(value)
-            elif rtype == "DOMAIN-KEYWORD":
-                keywords.add(value)
-    return sorted(suffixes), sorted(keywords)
+@dataclass(frozen=True)
+class SourceRules:
+    updated: str
+    suffixes: tuple[str, ...]
+    keywords: tuple[str, ...]
 
 
-def _header(name, desc, target, suffixes, keywords, extra=()):
-    today = datetime.date.today().isoformat()
+def parse_source(relpath: str) -> SourceRules:
+    path = ROOT / relpath
+    updated: str | None = None
+    suffixes: list[str] = []
+    keywords: list[str] = []
+
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if line.startswith("# UPDATED:"):
+            updated = line.partition(":")[2].strip()
+            continue
+        if not line or line.startswith("#"):
+            continue
+
+        parts = [part.strip() for part in line.split(",")]
+        if len(parts) != 2:
+            raise ValueError(
+                f"{relpath}: rule must contain exactly two comma-separated fields: "
+                f"{raw_line}"
+            )
+        rule_type, value = parts
+        if not value:
+            raise ValueError(f"{relpath}: rule value cannot be empty: {raw_line}")
+        if value != value.lower():
+            raise ValueError(f"{relpath}: rule values must be lowercase: {raw_line}")
+        if rule_type == "DOMAIN-SUFFIX":
+            if not DOMAIN_RE.fullmatch(value):
+                raise ValueError(f"{relpath}: invalid domain suffix: {value}")
+            suffixes.append(value)
+        elif rule_type == "DOMAIN-KEYWORD":
+            if not KEYWORD_RE.fullmatch(value):
+                raise ValueError(f"{relpath}: invalid domain keyword: {value}")
+            keywords.append(value)
+        else:
+            raise ValueError(f"Unsupported rule type in {relpath}: {rule_type}")
+
+    if updated is None:
+        raise ValueError(f"Missing # UPDATED metadata in {relpath}")
+    if len(suffixes) != len(set(suffixes)):
+        raise ValueError(f"Duplicate DOMAIN-SUFFIX rule in {relpath}")
+    if len(keywords) != len(set(keywords)):
+        raise ValueError(f"Duplicate DOMAIN-KEYWORD rule in {relpath}")
+
+    return SourceRules(
+        updated=updated,
+        suffixes=tuple(sorted(suffixes)),
+        keywords=tuple(sorted(keywords)),
+    )
+
+
+def render_header(
+    name: str,
+    description: str,
+    target: str,
+    updated: str,
+    suffixes: tuple[str, ...],
+    keywords: tuple[str, ...],
+    extra: tuple[str, ...] = (),
+) -> str:
     lines = [
-        "# NAME: " + name,
-        "# DESC: " + desc,
+        f"# NAME: {name}",
+        f"# DESC: {description}",
         "# AUTHOR: proxyBug",
-        "# REPO: " + REPO,
-        "# TARGET: " + target,
-        "# UPDATED: " + today,
-        "# DOMAIN-SUFFIX: %d" % len(suffixes),
-        "# DOMAIN-KEYWORD: %d" % len(keywords),
-        "# TOTAL: %d" % (len(suffixes) + len(keywords)),
+        f"# REPO: {REPO}",
+        f"# TARGET: {target}",
+        f"# UPDATED: {updated}",
+        f"# DOMAIN-SUFFIX: {len(suffixes)}",
+        f"# DOMAIN-KEYWORD: {len(keywords)}",
+        f"# TOTAL: {len(suffixes) + len(keywords)}",
     ]
     lines.extend(extra)
     return "\n".join(lines) + "\n\n"
 
 
-def write(relpath, content):
-    path = os.path.join(ROOT, relpath)
-    d = os.path.dirname(path)
-    if not os.path.isdir(d):
-        os.makedirs(d)
-    with io.open(path, "w", encoding="utf-8") as f:
-        f.write(content)
-    print("generated", relpath)
+def render_client_formats(
+    name: str,
+    description: str,
+    rules: SourceRules,
+) -> dict[str, str]:
+    outputs: dict[str, str] = {}
 
+    plain_body = "".join(f"DOMAIN-SUFFIX,{domain}\n" for domain in rules.suffixes)
+    plain_body += "".join(f"DOMAIN-KEYWORD,{keyword}\n" for keyword in rules.keywords)
+    for client in ("Surge", "Shadowrocket"):
+        outputs[f"rule/{client}/{name}.list"] = (
+            render_header(
+                name,
+                description,
+                client,
+                rules.updated,
+                rules.suffixes,
+                rules.keywords,
+            )
+            + plain_body
+        )
 
-def generate_all_formats(name, desc, suffixes, keywords):
-    """Write rule files for all proxy client formats."""
+    qx_body = "".join(
+        f"HOST-SUFFIX,{domain},{name}\n" for domain in rules.suffixes
+    )
+    qx_body += "".join(
+        f"HOST-KEYWORD,{keyword},{name}\n" for keyword in rules.keywords
+    )
+    outputs[f"rule/QuantumultX/{name}.list"] = (
+        render_header(
+            name,
+            description,
+            "Quantumult X",
+            rules.updated,
+            rules.suffixes,
+            rules.keywords,
+            ("# 订阅时建议使用 force-policy=你的策略 覆盖默认策略名",),
+        )
+        + qx_body
+    )
 
-    # Surge / Shadowrocket — plain RULE-SET list
-    body = "".join("DOMAIN-SUFFIX,%s\n" % d for d in suffixes)
-    body += "".join("DOMAIN-KEYWORD,%s\n" % k for k in keywords)
-    write("rule/Surge/%s.list" % name,
-          _header(name, desc, "Surge", suffixes, keywords) + body)
-    write("rule/Shadowrocket/%s.list" % name,
-          _header(name, desc, "Shadowrocket", suffixes, keywords) + body)
-
-    # Quantumult X — filter_remote format
-    qx = "".join("HOST-SUFFIX,%s,%s\n" % (d, name) for d in suffixes)
-    qx += "".join("HOST-KEYWORD,%s,%s\n" % (k, name) for k in keywords)
-    extra = ("# 订阅时建议使用 force-policy=你的策略 覆盖默认策略名",)
-    write("rule/QuantumultX/%s.list" % name,
-          _header(name, desc, "Quantumult X", suffixes, keywords, extra) + qx)
-
-    # Clash / mihomo — classical rule-provider (YAML)
-    clash = _header(name, desc,
-                    "Clash(mihomo) rule-provider, behavior: classical",
-                    suffixes, keywords)
+    clash = render_header(
+        name,
+        description,
+        "Clash(mihomo) rule-provider, behavior: classical",
+        rules.updated,
+        rules.suffixes,
+        rules.keywords,
+    )
     clash += "payload:\n"
-    clash += "".join("  - DOMAIN-SUFFIX,%s\n" % d for d in suffixes)
-    clash += "".join("  - DOMAIN-KEYWORD,%s\n" % k for k in keywords)
-    write("rule/Clash/%s.yaml" % name, clash)
+    clash += "".join(f"  - DOMAIN-SUFFIX,{domain}\n" for domain in rules.suffixes)
+    clash += "".join(f"  - DOMAIN-KEYWORD,{keyword}\n" for keyword in rules.keywords)
+    outputs[f"rule/Clash/{name}.yaml"] = clash
 
-    # sing-box — source format rule-set (JSON)
-    sb = {
+    sing_box = {
         "version": 2,
-        "rules": [{"domain_suffix": list(suffixes), "domain_keyword": list(keywords)}],
+        "rules": [
+            {
+                "domain_suffix": list(rules.suffixes),
+                "domain_keyword": list(rules.keywords),
+            }
+        ],
     }
-    write("rule/sing-box/%s.json" % name, json.dumps(sb, indent=2) + "\n")
+    outputs[f"rule/sing-box/{name}.json"] = json.dumps(sing_box, indent=2) + "\n"
+    return outputs
 
 
-def generate_loon_root(name, desc, suffixes, keywords):
-    """Write a generated Loon-format root file (TigerMoomoo.list)."""
-    today = datetime.date.today().isoformat()
+def render_combined_loon(name: str, description: str, rules: SourceRules) -> str:
     lines = [
-        "# NAME: " + name,
-        "# DESC: " + desc,
+        f"# NAME: {name}",
+        f"# DESC: {description}",
         "# AUTHOR: proxyBug",
-        "# REPO: " + REPO,
-        "# UPDATED: " + today,
-        "# DOMAIN-SUFFIX: %d" % len(suffixes),
-        "# DOMAIN-KEYWORD: %d" % len(keywords),
-        "# TOTAL: %d" % (len(suffixes) + len(keywords)),
+        f"# REPO: {REPO}",
+        f"# UPDATED: {rules.updated}",
+        f"# DOMAIN-SUFFIX: {len(rules.suffixes)}",
+        f"# DOMAIN-KEYWORD: {len(rules.keywords)}",
+        f"# TOTAL: {len(rules.suffixes) + len(rules.keywords)}",
         "# 适用于 Loon 远程规则 (Remote Rule) 订阅,策略组在订阅时自行指定",
         "# 此文件由 scripts/generate.py 自动生成,请勿手动编辑",
         "",
     ]
-    for d in suffixes:
-        lines.append("DOMAIN-SUFFIX," + d)
-    for k in keywords:
-        lines.append("DOMAIN-KEYWORD," + k)
-    write(name + ".list", "\n".join(lines) + "\n")
+    lines.extend(f"DOMAIN-SUFFIX,{domain}" for domain in rules.suffixes)
+    lines.extend(f"DOMAIN-KEYWORD,{keyword}" for keyword in rules.keywords)
+    return "\n".join(lines) + "\n"
 
 
-def main():
-    tiger_s, tiger_k = parse_source("TigerTrade.list")
-    moomoo_s, moomoo_k = parse_source("Moomoo.list")
+def build_outputs() -> dict[str, str]:
+    tiger = parse_source("TigerTrade.list")
+    moomoo = parse_source("Moomoo.list")
+    combined = SourceRules(
+        updated=max(tiger.updated, moomoo.updated),
+        suffixes=tuple(sorted(set(tiger.suffixes) | set(moomoo.suffixes))),
+        keywords=tuple(sorted(set(tiger.keywords) | set(moomoo.keywords))),
+    )
 
-    # Per-app rule files
-    generate_all_formats("TigerTrade", TIGER_DESC, tiger_s, tiger_k)
-    generate_all_formats("Moomoo", MOOMOO_DESC, moomoo_s, moomoo_k)
+    outputs: dict[str, str] = {}
+    outputs.update(render_client_formats("TigerTrade", TIGER_DESC, tiger))
+    outputs.update(render_client_formats("Moomoo", MOOMOO_DESC, moomoo))
+    outputs.update(render_client_formats("TigerMoomoo", COMBINED_DESC, combined))
+    outputs["TigerMoomoo.list"] = render_combined_loon(
+        "TigerMoomoo", COMBINED_DESC, combined
+    )
+    return outputs
 
-    # Combined Tiger + Moomoo
-    combined_s = sorted(set(tiger_s) | set(moomoo_s))
-    combined_k = sorted(set(tiger_k) | set(moomoo_k))
-    generate_all_formats("TigerMoomoo", COMBINED_DESC, combined_s, combined_k)
-    generate_loon_root("TigerMoomoo", COMBINED_DESC, combined_s, combined_k)
 
-    print("\nDone. Source files (TigerTrade.list, Moomoo.list) were not modified.")
+def apply_outputs(outputs: dict[str, str], check: bool) -> int:
+    stale: list[str] = []
+    for relpath, content in sorted(outputs.items()):
+        path = ROOT / relpath
+        current = path.read_text(encoding="utf-8") if path.exists() else None
+        if current == content:
+            continue
+        if check:
+            stale.append(relpath)
+            continue
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding="utf-8")
+        print(f"generated {relpath}")
+
+    if check and stale:
+        print("Generated files are stale:")
+        for relpath in stale:
+            print(f"  {relpath}")
+        print("Run: python3 scripts/generate.py")
+        return 1
+    if check:
+        print("All generated files are up to date.")
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="report stale generated files without rewriting them",
+    )
+    args = parser.parse_args()
+    try:
+        outputs = build_outputs()
+    except ValueError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+    return apply_outputs(outputs, check=args.check)
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

@@ -1,179 +1,75 @@
-# Tiger Trade & Moomoo — Proxy Rule Sets
-## 老虎证券 + 富途证券 代理分流规则集
+# Tiger Trade & Moomoo Proxy Rules
 
-> **English** | [中文说明见下方 ↓](#中文说明)
+[![Validate rules](https://github.com/proxyBug/tigertrade-loon-rules/actions/workflows/validate.yml/badge.svg)](https://github.com/proxyBug/tigertrade-loon-rules/actions/workflows/validate.yml)
 
-This repository provides **comprehensive, verified proxy rule sets** for two of the most widely used overseas brokerage platforms among Chinese-speaking investors: **Tiger Trade (老虎证券)** and **Moomoo / Futu NiuNiu (富途证券 / 富途牛牛)**. Both standalone subscriptions and a combined subscription are available, covering six proxy client formats.
+老虎证券（Tiger Trade）与富途证券 / Moomoo 的代理分流规则集。提供单独订阅与合并订阅，覆盖 **Loon、Surge、Shadowrocket、Clash/mihomo、Quantumult X、sing-box** 六种客户端。
 
----
+> 仓库名称为兼容既有订阅地址而保留。所有 `main` 分支 Raw URL 持续有效。
 
-## Background
+## 规则集
 
-Since late 2024, Chinese regulators have substantially tightened enforcement against overseas brokerage platforms that solicit mainland China clients. The result is widespread blocking by the Great Firewall — not only of official websites, but of every API endpoint the trading apps depend on. This creates a critical but commonly overlooked problem:
+| 规则集 | DOMAIN-SUFFIX | DOMAIN-KEYWORD | 合计 | 适用场景 |
+| --- | ---: | ---: | ---: | --- |
+| Tiger Trade | 33 | 0 | **33** | 仅使用老虎证券 |
+| Moomoo / Futu | 24 | 0 | **24** | 仅使用富途 / Moomoo |
+| Tiger + Moomoo | 57 | 0 | **57** | 同时使用两家平台 |
 
-> **Proxying only the primary domain is not enough.**
+本项目采用经过核验的显式域名后缀白名单，不使用宽泛的子串关键字。共享云厂商 IP、通用推送域名及进程名暂不收入主规则集，以降低误分流和地址漂移风险。
 
-Modern trading apps issue dozens of concurrent API requests across a range of hostnames — including obfuscated CDN and acceleration domains whose names give no obvious hint of their affiliation. Routing only `tigertrade.com` or `moomoo.com` through a proxy leaves market data feeds, order execution APIs, authentication servers, and real-time price streams on the wrong network path. The result: the app appears configured for proxy yet still fails to connect, or connects intermittently with stale data.
+## 订阅地址
 
-This repository exists to solve that problem. Every domain listed here has been traced back to its owning platform through WHOIS records, TLS certificates, or app traffic captures — not guesswork. The rule sets are intentionally more complete than what mainstream community repos carry, specifically targeting the hidden CDN and API endpoints that cause "configured but still broken" failures.
-
----
-
-## 中文说明
-
-2024 年底以来，中国监管机构大幅加强了对向境内客户招揽业务的境外券商平台的执法力度，导致防火长城对大量投资相关域名实施了封锁——不仅限于官方网站，还包括交易 App 所依赖的全部 API 接口。这带来了一个关键但常被忽视的问题：
-
-> **仅代理主域名是不够的。**
-
-现代交易 App 会同时向数十个不同主机名发起 API 请求，其中包含大量经过混淆命名的 CDN 和加速域名，从名称上完全看不出与券商的关联。只代理 `tigertrade.com` 或 `moomoo.com`，会导致行情数据、委托下单接口、登录认证、实时报价等服务走错线路。结果就是：App 看起来"已配置代理"，但仍然无法连接，或连接不稳定、数据陈旧。
-
-本仓库正是为解决这个问题而建立的。所有收录的域名均通过 WHOIS 记录、TLS 证书或 App 抓包溯源到对应的券商平台，有据可查。规则集比主流社区仓库更为完整，专门针对导致"配置了却还是坏"的隐藏 CDN 和 API 节点。
-
----
-
-## 📊 Tiger Trade — Rule Coverage
-
-**26 rules** — a complete superset of [blackmatrix7/ios_rule_script](https://github.com/blackmatrix7/ios_rule_script) (8 rules) and [v2fly/domain-list-community](https://github.com/v2fly/domain-list-community) (4 rules), with exclusive coverage of obfuscated CDN domains (`skytigris.*` / `atigr*` / `tigr*` series) that are the root cause of the "configured but still broken" issue.
-
-| Coverage | This repo | blackmatrix7<br>(TigerFintech) | v2fly<br>(itiger) |
-| --- | :---: | :---: | :---: |
-| Rule count | **26** | 8 | 4 |
-| Core App API (itiger.com / tigerfintech.com) | ✅ | ✅ | ⚠️ missing tigerfintech |
-| US App API (itigerup.com) | ✅ | ❌ | ✅ |
-| Obfuscated CDN (skytigris / atigr\* / tigr\* — 8 domains) | ✅ | ❌ | ⚠️ 2 of 8 only |
-| Regional sites (sg / au / hk / nz) | ✅ | ❌ | ❌ |
-| US entities (TradeUP / Tiger Securities) | ✅ | ❌ | ❌ |
-| Tiger Community (laohu8 / tigerbbs / xiaohu8) | ✅ | ✅ | ❌ |
-| TigerGPT (ttm.financial) | ✅ | ❌ | ❌ |
-| Keyword fallback (auto-covers future regional sites) | ✅ | ❌ | ❌ |
-
-> Comparison based on both repos' June 2026 versions. This repo is a complete superset of all domains in both.
-
-## 📊 Moomoo — Rule Coverage
-
-**9 rules** covering all verified Moomoo / Futu NiuNiu endpoints, including the keyword fallbacks that catch current and future regional domains (`.com.au`, `.ca`, `.my`, `.jp`, etc.).
-
-| Coverage | This repo | blackmatrix7<br>(Moomoo) | v2fly |
-| --- | :---: | :---: | :---: |
-| Rule count | **9** | ~3 | ❌ |
-| Core App API (moomoo.com / futunn.com) | ✅ | ✅ | ❌ |
-| Corporate site (futu.inc) | ✅ | ✅ | ❌ |
-| Regional offices (futuhk.com / futusg.com) | ✅ | ❌ | ❌ |
-| Market data API (futu5.com) | ✅ | ❌ | ❌ |
-| VIP service domain (nniuvip.com) | ✅ | ❌ | ❌ |
-| Keyword fallback (moomoo.\* / futunn.\*) | ✅ | ❌ | ❌ |
-
----
-
-## 📦 Subscription URLs
-
-Three rule sets are available — use whichever matches your brokerage(s):
-
-| Client | Tiger Trade only | Moomoo only | Tiger + Moomoo (combined) |
+| 客户端 | Tiger Trade | Moomoo / Futu | 合并规则 |
 | --- | --- | --- | --- |
-| **Loon** | [`TigerTrade.list`][lt] | [`Moomoo.list`][lm] | [`TigerMoomoo.list`][lc] |
-| Surge | [`rule/Surge/TigerTrade.list`][st] | [`rule/Surge/Moomoo.list`][sm] | [`rule/Surge/TigerMoomoo.list`][sc] |
-| Shadowrocket | [`rule/Shadowrocket/TigerTrade.list`][rt] | [`rule/Shadowrocket/Moomoo.list`][rm] | [`rule/Shadowrocket/TigerMoomoo.list`][rc] |
-| Clash / mihomo | [`rule/Clash/TigerTrade.yaml`][ct] | [`rule/Clash/Moomoo.yaml`][cm] | [`rule/Clash/TigerMoomoo.yaml`][cc] |
-| Quantumult X | [`rule/QuantumultX/TigerTrade.list`][qt] | [`rule/QuantumultX/Moomoo.list`][qm] | [`rule/QuantumultX/TigerMoomoo.list`][qc] |
-| sing-box | [`rule/sing-box/TigerTrade.json`][bt] | [`rule/sing-box/Moomoo.json`][bm] | [`rule/sing-box/TigerMoomoo.json`][bc] |
+| **Loon** | [`TigerTrade.list`][loon-tiger] | [`Moomoo.list`][loon-moomoo] | [`TigerMoomoo.list`][loon-combined] |
+| Surge | [`TigerTrade.list`][surge-tiger] | [`Moomoo.list`][surge-moomoo] | [`TigerMoomoo.list`][surge-combined] |
+| Shadowrocket | [`TigerTrade.list`][shadowrocket-tiger] | [`Moomoo.list`][shadowrocket-moomoo] | [`TigerMoomoo.list`][shadowrocket-combined] |
+| Clash / mihomo | [`TigerTrade.yaml`][clash-tiger] | [`Moomoo.yaml`][clash-moomoo] | [`TigerMoomoo.yaml`][clash-combined] |
+| Quantumult X | [`TigerTrade.list`][qx-tiger] | [`Moomoo.list`][qx-moomoo] | [`TigerMoomoo.list`][qx-combined] |
+| sing-box | [`TigerTrade.json`][singbox-tiger] | [`Moomoo.json`][singbox-moomoo] | [`TigerMoomoo.json`][singbox-combined] |
 
-[lt]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/TigerTrade.list
-[lm]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/Moomoo.list
-[lc]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/TigerMoomoo.list
-[st]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/TigerTrade.list
-[sm]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/Moomoo.list
-[sc]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/TigerMoomoo.list
-[rt]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/TigerTrade.list
-[rm]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/Moomoo.list
-[rc]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/TigerMoomoo.list
-[ct]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Clash/TigerTrade.yaml
-[cm]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Clash/Moomoo.yaml
-[cc]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Clash/TigerMoomoo.yaml
-[qt]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/TigerTrade.list
-[qm]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/Moomoo.list
-[qc]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/TigerMoomoo.list
-[bt]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/TigerTrade.json
-[bm]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/Moomoo.json
-[bc]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/TigerMoomoo.json
+[loon-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/TigerTrade.list
+[loon-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/Moomoo.list
+[loon-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/TigerMoomoo.list
+[surge-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/TigerTrade.list
+[surge-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/Moomoo.list
+[surge-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/TigerMoomoo.list
+[shadowrocket-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/TigerTrade.list
+[shadowrocket-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/Moomoo.list
+[shadowrocket-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/TigerMoomoo.list
+[clash-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Clash/TigerTrade.yaml
+[clash-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Clash/Moomoo.yaml
+[clash-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Clash/TigerMoomoo.yaml
+[qx-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/TigerTrade.list
+[qx-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/Moomoo.list
+[qx-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/TigerMoomoo.list
+[singbox-tiger]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/TigerTrade.json
+[singbox-moomoo]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/Moomoo.json
+[singbox-combined]: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/TigerMoomoo.json
 
-> Loon source files (root `TigerTrade.list` and `Moomoo.list`) are manually maintained; all other formats are generated from them. `TigerMoomoo.list` is auto-generated and should not be edited directly.
+## 客户端示例
 
----
+以下示例使用合并规则。只使用一家平台时，替换为上表对应链接即可。
 
-## 🏆 Loon (Recommended)
-
-**In-app**: Configuration → Rules → Remote Rules → **+** (top right) → paste URL → set policy → set tag → save → refresh.
-
-**Config file** (replace `PROXY` with your policy group name):
+### Loon
 
 ```ini
-# Tiger Trade only
-[Remote Rule]
-https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/TigerTrade.list, policy=PROXY, tag=TigerTrade, enabled=true
-
-# Moomoo only
-[Remote Rule]
-https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/Moomoo.list, policy=PROXY, tag=Moomoo, enabled=true
-
-# Tiger Trade + Moomoo (combined)
 [Remote Rule]
 https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/TigerMoomoo.list, policy=PROXY, tag=TigerMoomoo, enabled=true
 ```
 
-## Surge
-
-Replace `PROXY` with your policy group name; place the rule before `FINAL`.
+### Surge / Shadowrocket
 
 ```ini
 [Rule]
-# Tiger Trade only
-RULE-SET,https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/TigerTrade.list,PROXY
-
-# Moomoo only
-RULE-SET,https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/Moomoo.list,PROXY
-
-# Tiger Trade + Moomoo (combined)
 RULE-SET,https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Surge/TigerMoomoo.list,PROXY
 ```
 
-## Shadowrocket
+Shadowrocket 用户将 URL 换成 `rule/Shadowrocket/TigerMoomoo.list`。`PROXY` 替换为自己的策略组名，并将规则放在 `FINAL` 前。
 
-In-app: Settings → Rules → **+** → type `RULE-SET` → paste URL → policy `PROXY`.
-
-Config file (same syntax as Surge):
-
-```ini
-[Rule]
-# Tiger Trade only
-RULE-SET,https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/TigerTrade.list,PROXY
-
-# Moomoo only
-RULE-SET,https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/Moomoo.list,PROXY
-
-# Tiger Trade + Moomoo (combined)
-RULE-SET,https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Shadowrocket/TigerMoomoo.list,PROXY
-```
-
-## Clash / mihomo
+### Clash / mihomo
 
 ```yaml
 rule-providers:
-  TigerTrade:
-    type: http
-    behavior: classical
-    format: yaml
-    url: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Clash/TigerTrade.yaml
-    path: ./ruleset/TigerTrade.yaml
-    interval: 86400
-  Moomoo:
-    type: http
-    behavior: classical
-    format: yaml
-    url: https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/Clash/Moomoo.yaml
-    path: ./ruleset/Moomoo.yaml
-    interval: 86400
-  # Or use the combined ruleset instead of the two above:
   TigerMoomoo:
     type: http
     behavior: classical
@@ -183,58 +79,19 @@ rule-providers:
     interval: 86400
 
 rules:
-  - RULE-SET,TigerTrade,PROXY
-  - RULE-SET,Moomoo,PROXY
-  # Or with the combined set:
-  # - RULE-SET,TigerMoomoo,PROXY
+  - RULE-SET,TigerMoomoo,PROXY
 ```
 
-## Quantumult X
-
-Replace `节点选择` with your policy group name; `force-policy` overrides the default in the rule file.
+### Quantumult X
 
 ```ini
 [filter_remote]
-# Tiger Trade only
-https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/TigerTrade.list, tag=TigerTrade, force-policy=节点选择, update-interval=86400, opt-parser=false, enabled=true
-
-# Moomoo only
-https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/Moomoo.list, tag=Moomoo, force-policy=节点选择, update-interval=86400, opt-parser=false, enabled=true
-
-# Tiger Trade + Moomoo (combined)
 https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/QuantumultX/TigerMoomoo.list, tag=TigerMoomoo, force-policy=节点选择, update-interval=86400, opt-parser=false, enabled=true
 ```
 
-## sing-box
+### sing-box
 
-```json
-{
-  "route": {
-    "rule_set": [
-      {
-        "type": "remote",
-        "tag": "tigertrade",
-        "format": "source",
-        "url": "https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/TigerTrade.json",
-        "update_interval": "24h"
-      },
-      {
-        "type": "remote",
-        "tag": "moomoo",
-        "format": "source",
-        "url": "https://raw.githubusercontent.com/proxyBug/tigertrade-loon-rules/main/rule/sing-box/Moomoo.json",
-        "update_interval": "24h"
-      }
-    ],
-    "rules": [
-      { "rule_set": "tigertrade", "outbound": "proxy" },
-      { "rule_set": "moomoo", "outbound": "proxy" }
-    ]
-  }
-}
-```
-
-Or with the combined rule set:
+需要 sing-box **1.10 或更新版本**。将示例中的 `proxy` 替换为配置里真实存在的 outbound tag。
 
 ```json
 {
@@ -255,64 +112,43 @@ Or with the combined rule set:
 }
 ```
 
----
+## 数据来源与收录原则
 
-## Rule Content Details
+最近审计：**2026-08-20**。
 
-### Tiger Trade (26 rules)
+规则按以下证据层级维护：
 
-| Type | Count | Notes |
-| --- | :---: | --- |
-| DOMAIN-SUFFIX | 25 | Core APIs, CDN/acceleration, regional sites, community |
-| DOMAIN-KEYWORD | 1 | `tigerbrokers` — future-proofs against new regional domains |
+1. 平台官网、OpenAPI 文档、地区站及企业服务页面；
+2. [v2fly `data/itiger`](https://github.com/v2fly/domain-list-community/blob/master/data/itiger) 与 [v2fly `data/futu`](https://github.com/v2fly/domain-list-community/blob/master/data/futu)；
+3. [blackmatrix7 TigerFintech](https://github.com/blackmatrix7/ios_rule_script/tree/master/rule/Loon/TigerFintech)；
+4. DNS、TLS、HTTP 跳转及社区抓包资料，用作交叉确认。
 
-Key domains:
+单次 DNS 失效不自动触发删除：部分交易、备用或地区端点可能按网络位置和业务状态启停。新增与移除均以多源证据为准。宽泛关键字、共享 CDN、云厂商 IP 段和第三方推送域名默认排除。
 
-- **Core App / API**: `itiger.com`, `itigerup.com`, `tigerfintech.com`
-- **Obfuscated CDN / acceleration** (actual app traffic, often misleading names): `skytigris.cn`, `skytigris.com`, `itigergrowth.com`, `itigergrowtha.com`, `atigrzen.com`, `atigrpulse.com`, `tigrwd.com`, `tigrdw.com`
-- **Regional official sites**: `tigerbrokers.com` (+ `.com.sg` / `.com.au` / `.com.hk` / `.nz`)
-- **US entities**: `tigersecurities.com`, `tradeup.com`
-- **Community / TigerGPT**: `laohu8.com`, `tigerbbs.com`, `tigerbbs.cn`, `xiaohu8.com`, `ttm.financial`
+## 维护与验证
 
-CDN domain attribution: `skytigris.cn` WHOIS registrant email is `@itiger.com`; `tigrwd.com` / `tigrdw.com` site title is *Tiger Fintech*; `atigrzen.com` site identity is *Tiger Brokers*; `itigergrowth(a).com` is listed in [v2fly's official itiger dataset](https://github.com/v2fly/domain-list-community/blob/master/data/itiger).
-
-### Moomoo / Futu NiuNiu (9 rules)
-
-| Type | Count | Notes |
-| --- | :---: | --- |
-| DOMAIN-SUFFIX | 7 | Platform, API, regional offices |
-| DOMAIN-KEYWORD | 2 | `moomoo` + `futunn` — covers all regional variants |
-
-Key domains:
-
-- **Core App / API**: `moomoo.com` (US/global), `futunn.com` (HK/international 富途牛牛)
-- **Corporate**: `futu.inc`
-- **Regional offices**: `futuhk.com` (Hong Kong), `futusg.com` (Singapore)
-- **Market data API**: `futu5.com` (Futu market data and trading interface)
-- **VIP services**: `nniuvip.com` (NiuNiu VIP service platform)
-- **Keyword fallback**: `moomoo` catches `moomoo.com.au`, `moomoo.ca`, `moomoo.my`, `moomoo.jp`, etc.; `futunn` catches `futunn.*` variants
-
-### Tiger + Moomoo Combined (35 rules)
-
-The union of both rule sets: 32 `DOMAIN-SUFFIX` + 3 `DOMAIN-KEYWORD`. Recommended for users of both platforms.
-
----
-
-## 🔧 Maintenance
-
-`TigerTrade.list` and `Moomoo.list` in the repository root are the only files that should be edited manually. After modifying either source file, run:
+根目录的 `TigerTrade.list` 与 `Moomoo.list` 是手工维护源。其余规则文件均由生成器产出：
 
 ```bash
 python3 scripts/generate.py
+python3 -m unittest discover -s tests -v
+python3 scripts/generate.py --check
 ```
 
-This regenerates all files under `rule/` and the combined `TigerMoomoo.list`, keeping every format in sync from a single source of truth.
+`--check` 只检查生成文件是否漂移，不改写工作区。GitHub Actions 会在每次 Pull Request 和 `main` 分支提交时运行同一套验证。
 
----
+## English
 
-## Notes
+Explicit domain-suffix proxy rule sets for Tiger Trade and Moomoo/Futu, available separately or as a combined set for six proxy clients. The two root Loon files are the maintained sources; all other formats are generated and validated in CI. Broad substring keywords, shared-CDN IP ranges, and generic push-service domains are intentionally excluded to reduce false routing.
 
-- All domains have been verified through WHOIS records, TLS certificate inspection, or app traffic capture. Core domains are cross-referenced with [v2fly](https://github.com/v2fly/domain-list-community) and [blackmatrix7](https://github.com/blackmatrix7/ios_rule_script) community rules (credited with thanks).
-- All rules use exact suffix matching or complete brand-name keywords and will not accidentally match unrelated domains (e.g. `tigerair.com`, `futurenet.com`).
-- Missing a domain, or found one that's no longer valid? Issues and PRs are welcome.
-- This project is for network routing purposes only and is not affiliated with Tiger Brokers, Futu Holdings, or Moomoo Financial.
+## 说明
+
+- 本项目仅用于网络分流，与 Tiger Brokers、Futu Holdings 或 Moomoo Financial 无隶属关系。
+- 规则无法保证覆盖平台未来新增的全部端点；欢迎通过 Issue 提交可复现的缺失域名证据。
+- 使用者应自行确认当地法律、平台条款与账户风险。
+
+## License
+
+[MIT](LICENSE)
+
+Upstream comparison sources and their licenses are recorded in [NOTICE.md](NOTICE.md).

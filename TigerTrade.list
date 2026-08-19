@@ -2,26 +2,32 @@
 # DESC: 老虎证券 / 老虎国际 (Tiger Trade) 代理分流规则合集
 # AUTHOR: proxyBug
 # REPO: https://github.com/proxyBug/tigertrade-loon-rules
-# UPDATED: 2026-06-11
+# UPDATED: 2026-08-20
 # 适用于 Loon 远程规则 (Remote Rule) 订阅,策略组在订阅时自行指定
-# DOMAIN-SUFFIX: 25
-# DOMAIN-KEYWORD: 1
-# TOTAL: 26
+# DOMAIN-SUFFIX: 33
+# DOMAIN-KEYWORD: 0
+# TOTAL: 33
 
 # > 核心域名: App 行情 / 交易 / 开放平台 API
 DOMAIN-SUFFIX,itiger.com
 DOMAIN-SUFFIX,itigerup.com
 DOMAIN-SUFFIX,tigerfintech.com
 
-# > 加速 / 备用 CDN 域名 (App 内实际请求,多为混淆命名)
-# skytigris.cn 注册邮箱为 @itiger.com; tigrwd/tigrdw 站点标题为 Tiger Fintech;
-# atigrzen 站点标识为 Tiger Brokers; itigergrowth(a) 收录于 v2fly 官方 itiger 列表
+# > 加速 / 备用 CDN 与连接域名
+# 由 v2fly itiger、blackmatrix7 TigerFintech 与本项目既有抓包证据交叉整理
 DOMAIN-SUFFIX,atigrpulse.com
 DOMAIN-SUFFIX,atigrzen.com
+DOMAIN-SUFFIX,ftfast.com
+DOMAIN-SUFFIX,iotaskyt.com
+DOMAIN-SUFFIX,iotaskyty.com
 DOMAIN-SUFFIX,itigergrowth.com
 DOMAIN-SUFFIX,itigergrowtha.com
+DOMAIN-SUFFIX,play-analytics.com
 DOMAIN-SUFFIX,skytigris.cn
 DOMAIN-SUFFIX,skytigris.com
+DOMAIN-SUFFIX,tbdesk.com
+DOMAIN-SUFFIX,tigertcp.cn
+DOMAIN-SUFFIX,tigr.link
 DOMAIN-SUFFIX,tigrdw.com
 DOMAIN-SUFFIX,tigrwd.com
 
@@ -33,6 +39,7 @@ DOMAIN-SUFFIX,tigerbrokers.com
 DOMAIN-SUFFIX,tigerbrokers.com.au
 DOMAIN-SUFFIX,tigerbrokers.com.hk
 DOMAIN-SUFFIX,tigerbrokers.com.sg
+DOMAIN-SUFFIX,tigerbrokers.net
 DOMAIN-SUFFIX,tigerbrokers.nz
 
 # > 美国子公司 / 关联券商品牌
@@ -48,6 +55,3 @@ DOMAIN-SUFFIX,xiaohu8.com
 # > 其他关联域名
 DOMAIN-SUFFIX,zhijianfengyi.cn
 DOMAIN-SUFFIX,zhijianfengyi.com
-
-# > 兜底: 覆盖未来可能新增的地区站点
-DOMAIN-KEYWORD,tigerbrokers

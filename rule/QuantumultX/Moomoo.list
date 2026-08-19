@@ -3,18 +3,33 @@
 # AUTHOR: proxyBug
 # REPO: https://github.com/proxyBug/tigertrade-loon-rules
 # TARGET: Quantumult X
-# UPDATED: 2026-06-23
-# DOMAIN-SUFFIX: 7
-# DOMAIN-KEYWORD: 2
-# TOTAL: 9
+# UPDATED: 2026-08-20
+# DOMAIN-SUFFIX: 24
+# DOMAIN-KEYWORD: 0
+# TOTAL: 24
 # 订阅时建议使用 force-policy=你的策略 覆盖默认策略名
 
-HOST-SUFFIX,futu.inc,Moomoo
+HOST-SUFFIX,futu.cn,Moomoo
+HOST-SUFFIX,futu.link,Moomoo
 HOST-SUFFIX,futu5.com,Moomoo
+HOST-SUFFIX,futuau.com,Moomoo
+HOST-SUFFIX,futuesop.com,Moomoo
+HOST-SUFFIX,futufin.com,Moomoo
 HOST-SUFFIX,futuhk.com,Moomoo
+HOST-SUFFIX,futuhk1.com,Moomoo
+HOST-SUFFIX,futuhk2.com,Moomoo
+HOST-SUFFIX,futuhkapp.com,Moomoo
+HOST-SUFFIX,futuhn.com,Moomoo
+HOST-SUFFIX,futuholdings.com,Moomoo
+HOST-SUFFIX,futuniuniu.com,Moomoo
 HOST-SUFFIX,futunn.com,Moomoo
+HOST-SUFFIX,futuoa.com,Moomoo
 HOST-SUFFIX,futusg.com,Moomoo
+HOST-SUFFIX,futustatic.com,Moomoo
+HOST-SUFFIX,fututrade.com,Moomoo
+HOST-SUFFIX,fututrustee.com,Moomoo
+HOST-SUFFIX,moomoo.ca,Moomoo
 HOST-SUFFIX,moomoo.com,Moomoo
-HOST-SUFFIX,nniuvip.com,Moomoo
-HOST-KEYWORD,futunn,Moomoo
-HOST-KEYWORD,moomoo,Moomoo
+HOST-SUFFIX,moomoobull.com,Moomoo
+HOST-SUFFIX,moomooequity.com,Moomoo
+HOST-SUFFIX,moomootrustee.com,Moomoo
